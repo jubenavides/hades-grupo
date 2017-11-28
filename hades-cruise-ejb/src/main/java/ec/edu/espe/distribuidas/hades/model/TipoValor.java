@@ -6,6 +6,7 @@
 package ec.edu.espe.distribuidas.hades.model;
 
 import ec.edu.espe.distribuidas.hades.enums.TipoCruceroEnum;
+import ec.edu.espe.distribuidas.hades.enums.TipoValorEnum;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class TipoValor {
     
     @Enumerated(EnumType.STRING)
     @Column(name="TIPO_COBRO", length = 3, nullable = false)
-    private TipoCruceroEnum tipoCobro;
+    private TipoValorEnum tipoCobro;
     
     @Column(name="ORDEN", length = 3, nullable = false)
     private String orden;
