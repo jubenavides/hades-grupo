@@ -5,7 +5,6 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
-import ec.edu.espe.distribuidas.hades.enums.TipoCruceroEnum;
 import ec.edu.espe.distribuidas.hades.enums.TipoValorEnum;
 import java.util.Objects;
 import javax.persistence.Column;
