@@ -70,11 +70,11 @@ public class TipoValor {
         this.descripcion = descripcion;
     }
 
-    public TipoCruceroEnum getTipoCobro() {
+    public TipoValorEnum getTipoCobro() {
         return tipoCobro;
     }
 
-    public void setTipoCobro(TipoCruceroEnum tipoCobro) {
+    public void setTipoCobro(TipoValorEnum tipoCobro) {
         this.tipoCobro = tipoCobro;
     }
 
@@ -115,6 +115,6 @@ public class TipoValor {
     public String toString() {
         return "TipoValor{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", tipoCobro=" + tipoCobro + ", orden=" + orden + '}';
     }
-  
+
     
 }
