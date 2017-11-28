@@ -10,6 +10,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -31,6 +33,7 @@ public class Menu {
     private String descripcion;
     @Column(name="PRECIO",precision = 8, scale = 2)
     private BigDecimal precio;
+    @Enumerated(EnumType.STRING)
     @Column(name="TIPO",length = 5)
     private String tipo;
 
