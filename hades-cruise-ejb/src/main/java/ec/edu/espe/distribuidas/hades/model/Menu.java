@@ -31,7 +31,7 @@ public class Menu {
     private String descripcion;
     @Column(name="PRECIO",precision = 8, scale = 2)
     private BigDecimal precio;
-    @Column(name="TIO",length = 5)
+    @Column(name="TIPO",length = 5)
     private String tipo;
 
     public Menu() {
