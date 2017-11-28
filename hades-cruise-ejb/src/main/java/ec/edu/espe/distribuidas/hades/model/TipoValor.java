@@ -5,9 +5,12 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
+import ec.edu.espe.distribuidas.hades.enums.TipoCruceroEnum;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,8 +30,11 @@ public class TipoValor {
     private String nombre;
     @Column(name="DESCRIPCION", length = 100, nullable = false)
     private String descripcion;
+    
+    @Enumerated(EnumType.STRING)
     @Column(name="TIPO_COBRO", length = 3, nullable = false)
-    private String tipoCobro;
+    private TipoCruceroEnum tipoCobro;
+    
     @Column(name="ORDEN", length = 3, nullable = false)
     private String orden;
 
@@ -63,11 +69,11 @@ public class TipoValor {
         this.descripcion = descripcion;
     }
 
-    public String getTipoCobro() {
+    public TipoCruceroEnum getTipoCobro() {
         return tipoCobro;
     }
 
-    public void setTipoCobro(String tipoCobro) {
+    public void setTipoCobro(TipoCruceroEnum tipoCobro) {
         this.tipoCobro = tipoCobro;
     }
 
