@@ -31,9 +31,10 @@ public class Camarote {
     private String ubicacion;
     
     @ManyToOne
-    @JoinColumn(name="COD_TIPO_CAMAROTE", referencedColumnName = "COD_TIPO_CAMAROTE")
+    @JoinColumn(name="COD_TIPO_CAMAROTE", referencedColumnName = "COD_TIPO_CAMAROTE", insertable = false, updatable = false)
     private TipoCamarote tipoCamarote;
     @ManyToOne
+    @JoinColumn(name="COD_CRUCERO", referencedColumnName = "COD_CRUCERO", insertable = false, updatable = false)
     private Crucero crucero;
     
     
@@ -76,6 +77,23 @@ public class Camarote {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    public TipoCamarote getTipoCamarote() {
+        return tipoCamarote;
+    }
+
+    public void setTipoCamarote(TipoCamarote tipoCamarote) {
+        this.tipoCamarote = tipoCamarote;
+    }
+
+    public Crucero getCrucero() {
+        return crucero;
+    }
+
+    public void setCrucero(Crucero crucero) {
+        this.crucero = crucero;
+    }
+    
 
     @Override
     public int hashCode() {
