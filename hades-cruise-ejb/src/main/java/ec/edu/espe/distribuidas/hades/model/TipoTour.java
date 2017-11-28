@@ -17,8 +17,9 @@ import javax.persistence.Table;
 
 /**
  *
- * @author h201m05
+ * @author h201m05 david
  */
+
 @Entity
 @Table(name="TIPO_TOUR")
 public class TipoTour {
