@@ -5,7 +5,7 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
-import java.util.Objects;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,55 +18,58 @@ import javax.persistence.Table;
  * @author Hendrix
  */
 @Entity
-@Table(name="CAMAROTE")
-public class Camarote {
-    
+@Table(name = "camarote")
+public class Camarote implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @EmbeddedId
-    private CamarotePK pk;
-    @Column(name="NUMERO", length = 4, nullable = false)
-    private Integer numero;
-    @Column(name="CAPACIDAD", length = 2, nullable = false)
-    private Integer capacidad;
-    @Column(name="UBICACION", length = 100)
+    protected CamarotePK camarotePK;
+    @Column(name = "NUMERO", nullable = false)
+    private short numero;
+    @Column(name = "CAPACIDAD", nullable = false)
+    private short capacidad;
+    @Column(name = "UBICACION", length = 100)
     private String ubicacion;
     
-    @ManyToOne
-    @JoinColumn(name="COD_TIPO_CAMAROTE", referencedColumnName = "COD_TIPO_CAMAROTE", insertable = false, updatable = false)
-    private TipoCamarote tipoCamarote;
-    @ManyToOne
-    @JoinColumn(name="COD_CRUCERO", referencedColumnName = "COD_CRUCERO", insertable = false, updatable = false)
+    @JoinColumn(name = "COD_CRUCERO", referencedColumnName = "COD_CRUCERO", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false)
     private Crucero crucero;
-    
-    
+    @JoinColumn(name = "COD_TIPO_CAMAROTE", referencedColumnName = "COD_TIPO_CAMAROTE", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private TipoCamarote tipoCamarote;
+
     public Camarote() {
-        
     }
 
-    public Camarote(CamarotePK pk) {
-        this.pk = pk;
+    public Camarote(CamarotePK camarotePK) {
+        this.camarotePK = camarotePK;
     }
 
-    public CamarotePK getPk() {
-        return pk;
+    public Camarote(Integer codCrucero, Integer codCamarote, String codTipoCamarote) {
+        this.camarotePK = new CamarotePK(codCrucero, codCamarote, codTipoCamarote);
     }
 
-    public void setPk(CamarotePK pk) {
-        this.pk = pk;
+    public CamarotePK getCamarotePK() {
+        return camarotePK;
     }
 
-    public Integer getNumero() {
+    public void setCamarotePK(CamarotePK camarotePK) {
+        this.camarotePK = camarotePK;
+    }
+
+    public short getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(short numero) {
         this.numero = numero;
     }
 
-    public Integer getCapacidad() {
+    public short getCapacidad() {
         return capacidad;
     }
 
-    public void setCapacidad(Integer capacidad) {
+    public void setCapacidad(short capacidad) {
         this.capacidad = capacidad;
     }
 
@@ -78,6 +81,14 @@ public class Camarote {
         this.ubicacion = ubicacion;
     }
 
+    public Crucero getCrucero() {
+        return crucero;
+    }
+
+    public void setCrucero(Crucero crucero) {
+        this.crucero = crucero;
+    }
+
     public TipoCamarote getTipoCamarote() {
         return tipoCamarote;
     }
@@ -86,35 +97,21 @@ public class Camarote {
         this.tipoCamarote = tipoCamarote;
     }
 
-    public Crucero getCrucero() {
-        return crucero;
-    }
-
-    public void setCrucero(Crucero crucero) {
-        this.crucero = crucero;
-    }
-    
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.pk);
+        int hash = 0;
+        hash += (camarotePK != null ? camarotePK.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Camarote)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Camarote other = (Camarote) obj;
-        if (!Objects.equals(this.pk, other.pk)) {
+        Camarote other = (Camarote) object;
+        if ((this.camarotePK == null && other.camarotePK != null) || (this.camarotePK != null && !this.camarotePK.equals(other.camarotePK))) {
             return false;
         }
         return true;
@@ -122,9 +119,7 @@ public class Camarote {
 
     @Override
     public String toString() {
-        return "Camarote{" + "pk=" + pk + ", numero=" + numero + ", capacidad=" + capacidad + ", ubicacion=" + ubicacion + '}';
+        return "ec.edu.espe.distribuidas.hades.model.Camarote[ camarotePK=" + camarotePK + " ]";
     }
-    
-    
     
 }

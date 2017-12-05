@@ -5,7 +5,7 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
-import java.util.Objects;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,25 +13,25 @@ import javax.persistence.Table;
 
 /**
  *
- * @author js_cm
+ * @author Hendrix
  */
 @Entity
-@Table(name = "TIPO_ALIMENTACION")
-public class TipoAlimentacion {
-    
+@Table(name = "tipo_alimentacion")
+public class TipoAlimentacion implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "COD_TIPO_ALIMENTACION", length = 10)
+    @Column(name = "COD_TIPO_ALIMENTACION", nullable = false, length = 10)
     private String codigo;
-    
-    @Column(name = "DESCRIPCION", length = 100, nullable = false)
+    @Column(name = "DESCRIPCION", nullable = false, length = 100)
     private String descripcion;
+    
 
     public TipoAlimentacion() {
     }
 
-    public TipoAlimentacion(String codigo, String descripcion) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
+    public TipoAlimentacion(String codTipoAlimentacion) {
+        this.codigo = codTipoAlimentacion;
     }
 
     
@@ -52,42 +52,28 @@ public class TipoAlimentacion {
     }
 
     @Override
-    public String toString() {
-        return "TipoAlimentacion{" + "codigo=" + codigo + ", descripcion=" + descripcion + '}';
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.codigo);
-        hash = 97 * hash + Objects.hashCode(this.descripcion);
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof TipoAlimentacion)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TipoAlimentacion other = (TipoAlimentacion) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
-            return false;
-        }
-        if (!Objects.equals(this.descripcion, other.descripcion)) {
+        TipoAlimentacion other = (TipoAlimentacion) object;
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "ec.edu.espe.distribuidas.hades.model.TipoAlimentacion[ codTipoAlimentacion=" + codigo + " ]";
+    }
     
 }

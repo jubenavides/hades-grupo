@@ -5,7 +5,7 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
-import java.util.Objects;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -14,17 +14,16 @@ import javax.persistence.Embeddable;
  * @author Hendrix
  */
 @Embeddable
-public class CamarotePK {
-    
-    @Column(name="COD_CRUCERO", length = 5, nullable = false)
+public class CamarotePK implements Serializable {
+
+    @Column(name = "COD_CRUCERO", nullable = false)
     private Integer codCrucero;
-    @Column(name="COD_CAMAROTE", length = 5, nullable = false)
+    @Column(name = "COD_CAMAROTE", nullable = false)
     private Integer codCamarote;
-    @Column(name="COD_TIPO_CAMAROTE", length = 10, nullable = false)
+    @Column(name = "COD_TIPO_CAMAROTE", nullable = false, length = 10)
     private String codTipoCamarote;
-    
+
     public CamarotePK() {
-        
     }
 
     public CamarotePK(Integer codCrucero, Integer codCamarote, String codTipoCamarote) {
@@ -32,8 +31,6 @@ public class CamarotePK {
         this.codCamarote = codCamarote;
         this.codTipoCamarote = codTipoCamarote;
     }
-    
-    
 
     public Integer getCodCrucero() {
         return codCrucero;
@@ -61,32 +58,27 @@ public class CamarotePK {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.codCrucero);
-        hash = 29 * hash + Objects.hashCode(this.codCamarote);
-        hash = 29 * hash + Objects.hashCode(this.codTipoCamarote);
+        Integer hash = 0;
+        hash += (Integer) codCrucero;
+        hash += (Integer) codCamarote;
+        hash += (codTipoCamarote != null ? codTipoCamarote.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof CamarotePK)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        CamarotePK other = (CamarotePK) object;
+        if (this.codCrucero != other.codCrucero) {
             return false;
         }
-        final CamarotePK other = (CamarotePK) obj;
-        if (!Objects.equals(this.codTipoCamarote, other.codTipoCamarote)) {
+        if (this.codCamarote != other.codCamarote) {
             return false;
         }
-        if (!Objects.equals(this.codCrucero, other.codCrucero)) {
-            return false;
-        }
-        if (!Objects.equals(this.codCamarote, other.codCamarote)) {
+        if ((this.codTipoCamarote == null && other.codTipoCamarote != null) || (this.codTipoCamarote != null && !this.codTipoCamarote.equals(other.codTipoCamarote))) {
             return false;
         }
         return true;
@@ -94,10 +86,7 @@ public class CamarotePK {
 
     @Override
     public String toString() {
-        return "CamarotePK{" + "codCrucero=" + codCrucero + ", codCamarote=" + codCamarote + ", codTipoCamarote=" + codTipoCamarote + '}';
+        return "ec.edu.espe.distribuidas.hades.model.CamarotePK[ codCrucero=" + codCrucero + ", codCamarote=" + codCamarote + ", codTipoCamarote=" + codTipoCamarote + " ]";
     }
-    
-    
-    
     
 }

@@ -5,16 +5,14 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,37 +22,58 @@ import javax.persistence.TemporalType;
  * @author Hendrix
  */
 @Entity
-@Table(name = "TOUR")
-public class Tour {
+@Table(name = "tour")
+public class Tour implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @EmbeddedId
-    private TourPK pk;
-    @Column(name = "NOMBRE", length = 200, nullable = false)
+    protected TourPK tourPK;
+    @Column(name = "NOMBRE", nullable = false, length = 200)
     private String nombre;
-    @Column(name = "DURACION", length = 3, nullable = false)
+    @Column(name = "DURACION", nullable = false)
     private Integer duracion;
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "FECHA_INICIO", nullable = false)
-    private Date fechaIncio;
     @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaInicio;
     @Column(name = "FECHA_FIN", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
+    @Column(name = "PUERTO_EMBARQUE", nullable = false, length = 100)
+    private String puertoEmbarque;
+    @Column(name = "PUERTO_DESEMBARQUE", nullable = false, length = 100)
+    private String puertoDesembarque;
+    @Column(name = "PRECIO_BASE", nullable = false, precision = 8, scale = 2)
+    private BigDecimal precioBase;
+    @Column(name = "PORCENTAJE_MENU", nullable = false)
+    private Integer porcentajeMenu;
     
-    @ManyToOne
-    @JoinColumn(name="COD_TIPO_TOUR", referencedColumnName = "COD_TIPO_TOUR", insertable = false, updatable = false)
+    @JoinColumn(name = "COD_TIPO_TOUR", referencedColumnName = "COD_TIPO_TOUR", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false)
     private TipoTour tipoTour;
-    @ManyToOne
-    @JoinColumn(name="COD_CRUCERO", referencedColumnName = "COD_CRUCERO", insertable = false, updatable = false)
+    
+    @JoinColumn(name = "COD_CRUCERO", referencedColumnName = "COD_CRUCERO", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false)
     private Crucero crucero;
     
-    @OneToMany(mappedBy = "tour")
-    private List<Reserva> reservas;
-
-    public TourPK getPk() {
-        return pk;
+    public Tour() {
     }
 
-    public void setPk(TourPK pk) {
-        this.pk = pk;
+    public Tour(TourPK tourPK) {
+        this.tourPK = tourPK;
+    }
+
+    
+
+    public Tour(Integer codTour, String codTipoTour, Integer codCrucero) {
+        this.tourPK = new TourPK(codTour, codTipoTour, codCrucero);
+    }
+
+    public TourPK getTourPK() {
+        return tourPK;
+    }
+
+    public void setTourPK(TourPK tourPK) {
+        this.tourPK = tourPK;
     }
 
     public String getNombre() {
@@ -73,12 +92,12 @@ public class Tour {
         this.duracion = duracion;
     }
 
-    public Date getFechaIncio() {
-        return fechaIncio;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFechaIncio(Date fechaIncio) {
-        this.fechaIncio = fechaIncio;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public Date getFechaFin() {
@@ -87,6 +106,38 @@ public class Tour {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getPuertoEmbarque() {
+        return puertoEmbarque;
+    }
+
+    public void setPuertoEmbarque(String puertoEmbarque) {
+        this.puertoEmbarque = puertoEmbarque;
+    }
+
+    public String getPuertoDesembarque() {
+        return puertoDesembarque;
+    }
+
+    public void setPuertoDesembarque(String puertoDesembarque) {
+        this.puertoDesembarque = puertoDesembarque;
+    }
+
+    public BigDecimal getPrecioBase() {
+        return precioBase;
+    }
+
+    public void setPrecioBase(BigDecimal precioBase) {
+        this.precioBase = precioBase;
+    }
+
+    public Integer getPorcentajeMenu() {
+        return porcentajeMenu;
+    }
+
+    public void setPorcentajeMenu(Integer porcentajeMenu) {
+        this.porcentajeMenu = porcentajeMenu;
     }
 
     public TipoTour getTipoTour() {
@@ -107,24 +158,19 @@ public class Tour {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.pk);
+        int hash = 0;
+        hash += (tourPK != null ? tourPK.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Tour)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Tour other = (Tour) obj;
-        if (!Objects.equals(this.pk, other.pk)) {
+        Tour other = (Tour) object;
+        if ((this.tourPK == null && other.tourPK != null) || (this.tourPK != null && !this.tourPK.equals(other.tourPK))) {
             return false;
         }
         return true;
@@ -132,11 +178,7 @@ public class Tour {
 
     @Override
     public String toString() {
-        return "Tour{" + "pk=" + pk + ", nombre=" + nombre + ", duracion=" + duracion + ", fechaIncio=" + fechaIncio + ", fechaFin=" + fechaFin + '}';
+        return "ec.edu.espe.distribuidas.hades.model.Tour[ tourPK=" + tourPK + " ]";
     }
-
-    
-    
-    
     
 }

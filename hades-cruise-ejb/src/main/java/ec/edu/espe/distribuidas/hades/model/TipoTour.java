@@ -5,33 +5,38 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
-import ec.edu.espe.distribuidas.hades.enums.TipoCruceroEnum;
-import java.math.BigDecimal;
-import java.util.Objects;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  *
- * @author h201m05 david
+ * @author Hendrix
  */
-
 @Entity
-@Table(name="TIPO_TOUR")
-public class TipoTour {
+@Table(name = "tipo_tour")
+public class TipoTour implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
-    @Column(name="COD_TIPO_TOUR", length = 10)
+    @Column(name = "COD_TIPO_TOUR", nullable = false, length = 10)
     private String codigo;
-    @Column(name="NOMBRE", length = 100, nullable = false)
+    @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
-    @Column(name="DESCRIPCION", length = 500, nullable = false)
+    @Column(name = "DESCRIPCION", length = 500)
     private String descripcion;
-    @Column(name="DURACION", length = 3, nullable = false)
+    @Column(name = "DURACION", nullable = false)
     private Integer duracion;
+
+
+    public TipoTour() {
+    }
+
+    public TipoTour(String codTipoTour) {
+        this.codigo = codTipoTour;
+    }
 
     public String getCodigo() {
         return codigo;
@@ -65,42 +70,29 @@ public class TipoTour {
         this.duracion = duracion;
     }
 
-    public TipoTour() {
-    }
-
-    public TipoTour(String codigo) {
-        this.codigo = codigo;
-       
-    }
-
-    @Override
-    public String toString() {
-        return "TipoTour{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", duracion=" + duracion + '}';
-    }
-
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + Objects.hashCode(this.codigo);
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof TipoTour)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TipoTour other = (TipoTour) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
+        TipoTour other = (TipoTour) object;
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
     }
-     
+
+    @Override
+    public String toString() {
+        return "ec.edu.espe.distribuidas.hades.model.TipoTour[ codTipoTour=" + codigo + " ]";
+    }
+    
 }

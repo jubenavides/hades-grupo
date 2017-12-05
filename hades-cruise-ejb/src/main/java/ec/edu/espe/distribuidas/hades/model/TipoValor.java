@@ -5,52 +5,81 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
-import ec.edu.espe.distribuidas.hades.enums.TipoValorEnum;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author Eduardo Vera
+ * @author Hendrix
  */
-
 @Entity
-@Table(name = "TIPO_VALOR")
-public class TipoValor {
-    
-    @Id
-    @Column(name="COD_TIPO_VALOR", length = 10)
-    private String codigo;
-    @Column(name="NOMBRE", length = 100, nullable = false)
-    private String nombre;
-    @Column(name="DESCRIPCION", length = 100, nullable = false)
-    private String descripcion;
-    
-    @Enumerated(EnumType.STRING)
-    @Column(name="TIPO_COBRO", length = 3, nullable = false)
-    private TipoValorEnum tipoCobro;
-    
-    @Column(name="ORDEN", length = 3, nullable = false)
-    private String orden;
+@Table(name = "tipo_valor")
+@NamedQueries({
+    @NamedQuery(name = "TipoValor.findAll", query = "SELECT t FROM TipoValor t")})
+public class TipoValor implements Serializable {
 
-    public TipoValor(String codigo) {
-        this.codigo = codigo;
-    }
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "COD_TIPO_VALOR", nullable = false, length = 10)
+    private String codTipoValor;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "NOMBRE", nullable = false, length = 100)
+    private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "DESCRIPCION", nullable = false, length = 100)
+    private String descripcion;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 3)
+    @Column(name = "TIPO_COBRO", nullable = false, length = 3)
+    private String tipoCobro;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 3)
+    @Column(name = "ORDEN", nullable = false, length = 3)
+    private String orden;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoValor")
+    private List<ValorReserva> valorReservaList;
 
     public TipoValor() {
     }
 
-    public String getCodigo() {
-        return codigo;
+    public TipoValor(String codTipoValor) {
+        this.codTipoValor = codTipoValor;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public TipoValor(String codTipoValor, String nombre, String descripcion, String tipoCobro, String orden) {
+        this.codTipoValor = codTipoValor;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.tipoCobro = tipoCobro;
+        this.orden = orden;
+    }
+
+    public String getCodTipoValor() {
+        return codTipoValor;
+    }
+
+    public void setCodTipoValor(String codTipoValor) {
+        this.codTipoValor = codTipoValor;
     }
 
     public String getNombre() {
@@ -69,11 +98,11 @@ public class TipoValor {
         this.descripcion = descripcion;
     }
 
-    public TipoValorEnum getTipoCobro() {
+    public String getTipoCobro() {
         return tipoCobro;
     }
 
-    public void setTipoCobro(TipoValorEnum tipoCobro) {
+    public void setTipoCobro(String tipoCobro) {
         this.tipoCobro = tipoCobro;
     }
 
@@ -85,26 +114,29 @@ public class TipoValor {
         this.orden = orden;
     }
 
+    public List<ValorReserva> getValorReservaList() {
+        return valorReservaList;
+    }
+
+    public void setValorReservaList(List<ValorReserva> valorReservaList) {
+        this.valorReservaList = valorReservaList;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.codigo);
+        int hash = 0;
+        hash += (codTipoValor != null ? codTipoValor.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof TipoValor)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TipoValor other = (TipoValor) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
+        TipoValor other = (TipoValor) object;
+        if ((this.codTipoValor == null && other.codTipoValor != null) || (this.codTipoValor != null && !this.codTipoValor.equals(other.codTipoValor))) {
             return false;
         }
         return true;
@@ -112,8 +144,7 @@ public class TipoValor {
 
     @Override
     public String toString() {
-        return "TipoValor{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", tipoCobro=" + tipoCobro + ", orden=" + orden + '}';
+        return "ec.edu.espe.distribuidas.hades.model.TipoValor[ codTipoValor=" + codTipoValor + " ]";
     }
-
     
 }

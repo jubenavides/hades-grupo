@@ -5,51 +5,80 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Objects;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author joel
+ * @author Hendrix
  */
-
 @Entity
-@Table(name="MENU")
-public class Menu {
-    
+@Table(name = "menu")
+@NamedQueries({
+    @NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m")})
+public class Menu implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
-    @Column(name="COD_ITEM",length = 5)
-    private Integer codigo;
-    @Column(name="NOMBRE",length = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "COD_ITEM", nullable = false)
+    private Integer codItem;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
-    @Column(name="DESCRIPCION",length = 300, nullable = false)
+    @Size(max = 300)
+    @Column(name = "DESCRIPCION", length = 300)
     private String descripcion;
-    @Column(name="PRECIO",precision = 8, scale = 2)
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "PRECIO", nullable = false, precision = 8, scale = 2)
     private BigDecimal precio;
-    @Enumerated(EnumType.STRING)
-    @Column(name="TIPO",length = 5)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 5)
+    @Column(name = "TIPO", nullable = false, length = 5)
     private String tipo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menu")
+    private List<Consumo> consumoList;
 
     public Menu() {
     }
 
-    public Menu(Integer codigo) {
-        this.codigo = codigo;
+    public Menu(Integer codItem) {
+        this.codItem = codItem;
     }
 
-    public Integer getCodigo() {
-        return codigo;
+    public Menu(Integer codItem, String nombre, BigDecimal precio, String tipo) {
+        this.codItem = codItem;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.tipo = tipo;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public Integer getCodItem() {
+        return codItem;
+    }
+
+    public void setCodItem(Integer codItem) {
+        this.codItem = codItem;
     }
 
     public String getNombre() {
@@ -84,33 +113,37 @@ public class Menu {
         this.tipo = tipo;
     }
 
-    @Override
-    public String toString() {
-        return "Menu{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", tipo=" + tipo + '}';
+    public List<Consumo> getConsumoList() {
+        return consumoList;
+    }
+
+    public void setConsumoList(List<Consumo> consumoList) {
+        this.consumoList = consumoList;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.codigo);
+        int hash = 0;
+        hash += (codItem != null ? codItem.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Menu)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Menu other = (Menu) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
+        Menu other = (Menu) object;
+        if ((this.codItem == null && other.codItem != null) || (this.codItem != null && !this.codItem.equals(other.codItem))) {
             return false;
         }
         return true;
-    } 
+    }
+
+    @Override
+    public String toString() {
+        return "ec.edu.espe.distribuidas.hades.model.Menu[ codItem=" + codItem + " ]";
+    }
+    
 }

@@ -5,7 +5,7 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
-import java.util.Objects;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -14,29 +14,22 @@ import javax.persistence.Embeddable;
  * @author Hendrix
  */
 @Embeddable
-public class TourPK {
-    
-    @Column(name="COD_CRUCERO", length = 5, nullable = false)
-    private Integer codCrucero;
-    @Column(name="COD_TIPO_TOUR", length = 10, nullable = false)
-    private String codTipoTour;
-    @Column(name="COD_TOUR", length = 5, nullable = false)
+public class TourPK implements Serializable {
+
+    @Column(name = "COD_TOUR", nullable = false)
     private Integer codTour;
+    @Column(name = "COD_TIPO_TOUR", nullable = false, length = 10)
+    private String codTipoTour;
+    @Column(name = "COD_CRUCERO", nullable = false)
+    private Integer codCrucero;
 
-    public Integer getCodCrucero() {
-        return codCrucero;
+    public TourPK() {
     }
 
-    public void setCodCrucero(Integer codCrucero) {
-        this.codCrucero = codCrucero;
-    }
-
-    public String getCodTipoTour() {
-        return codTipoTour;
-    }
-
-    public void setCodTipoTour(String codTipoTour) {
+    public TourPK(Integer codTour, String codTipoTour, Integer codCrucero) {
+        this.codTour = codTour;
         this.codTipoTour = codTipoTour;
+        this.codCrucero = codCrucero;
     }
 
     public Integer getCodTour() {
@@ -47,34 +40,45 @@ public class TourPK {
         this.codTour = codTour;
     }
 
+    public String getCodTipoTour() {
+        return codTipoTour;
+    }
+
+    public void setCodTipoTour(String codTipoTour) {
+        this.codTipoTour = codTipoTour;
+    }
+
+    public Integer getCodCrucero() {
+        return codCrucero;
+    }
+
+    public void setCodCrucero(Integer codCrucero) {
+        this.codCrucero = codCrucero;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.codCrucero);
-        hash = 23 * hash + Objects.hashCode(this.codTipoTour);
-        hash = 23 * hash + Objects.hashCode(this.codTour);
+        Integer hash = 0;
+        hash += (Integer) codTour;
+        hash += (codTipoTour != null ? codTipoTour.hashCode() : 0);
+        hash += (Integer) codCrucero;
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof TourPK)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        TourPK other = (TourPK) object;
+        if (this.codTour != other.codTour) {
             return false;
         }
-        final TourPK other = (TourPK) obj;
-        if (!Objects.equals(this.codTipoTour, other.codTipoTour)) {
+        if ((this.codTipoTour == null && other.codTipoTour != null) || (this.codTipoTour != null && !this.codTipoTour.equals(other.codTipoTour))) {
             return false;
         }
-        if (!Objects.equals(this.codCrucero, other.codCrucero)) {
-            return false;
-        }
-        if (!Objects.equals(this.codTour, other.codTour)) {
+        if (this.codCrucero != other.codCrucero) {
             return false;
         }
         return true;
@@ -82,11 +86,7 @@ public class TourPK {
 
     @Override
     public String toString() {
-        return "TourPK{" + "codCrucero=" + codCrucero + ", codTipoTour=" + codTipoTour + ", codTour=" + codTour + '}';
+        return "ec.edu.espe.distribuidas.hades.model.TourPK[ codTour=" + codTour + ", codTipoTour=" + codTipoTour + ", codCrucero=" + codCrucero + " ]";
     }
-    
-    
-    
-    
     
 }

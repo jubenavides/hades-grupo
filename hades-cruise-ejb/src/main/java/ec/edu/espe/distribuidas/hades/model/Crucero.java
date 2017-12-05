@@ -5,13 +5,10 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
-import ec.edu.espe.distribuidas.hades.enums.TipoCruceroEnum;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,31 +17,31 @@ import javax.persistence.Table;
  * @author Hendrix
  */
 @Entity
-@Table(name="CRUCERO")
-public class Crucero {
-    
+@Table(name = "crucero")
+public class Crucero implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
-    @Column(name="COD_CRUCERO", length = 5)
+    @Column(name = "COD_CRUCERO", nullable = false)
     private Integer codigo;
-    @Column(name="REGISTRO", length = 10, nullable = false)
+    @Column(name = "REGISTRO", nullable = false, length = 10)
     private String registro;
-    @Column(name="NOMBRE", length = 100, nullable = false)
+    @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
-    
-    @Enumerated(EnumType.STRING)
-    @Column(name="TIPO", length = 3, nullable = false)
-    private TipoCruceroEnum tipo;
-    
-    @Column(name="CAPACIDAD", precision = 7, scale =2)
+    @Column(name = "TIPO", nullable = false, length = 3)
+    private String tipo;
+    @Column(name = "CAPACIDAD", precision = 7, scale = 2)
     private BigDecimal capacidad;
 
+
     public Crucero() {
-        
-    }
-    public Crucero(Integer codigo) {
-        this.codigo = codigo;
     }
 
+    public Crucero(Integer codCrucero) {
+        this.codigo = codCrucero;
+    }
+
+    
     public Integer getCodigo() {
         return codigo;
     }
@@ -69,15 +66,13 @@ public class Crucero {
         this.nombre = nombre;
     }
 
-    public TipoCruceroEnum getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoCruceroEnum tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    
 
     public BigDecimal getCapacidad() {
         return capacidad;
@@ -89,24 +84,19 @@ public class Crucero {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.codigo);
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Crucero)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Crucero other = (Crucero) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
+        Crucero other = (Crucero) object;
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
@@ -114,9 +104,7 @@ public class Crucero {
 
     @Override
     public String toString() {
-        return "Crucero{" + "codigo=" + codigo + ", registro=" + registro + ", nombre=" + nombre + ", tipo=" + tipo + '}';
+        return "ec.edu.espe.distribuidas.hades.model.Crucero[ codCrucero=" + codigo + " ]";
     }
-    
-    
     
 }
