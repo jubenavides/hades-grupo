@@ -5,10 +5,14 @@
  */
 package ec.edu.espe.distribuidas.hades.dao;
 
+import ec.edu.espe.distribuidas.hades.enums.TipoCruceroEnum;
+import ec.edu.espe.distribuidas.hades.model.Crucero;
 import ec.edu.espe.distribuidas.hades.model.TuristaReserva;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +33,9 @@ public class TuristaReservaFacade extends AbstractFacade<TuristaReserva> {
         super(TuristaReserva.class);
     }
     
+     public List<Crucero> findByTipo(TipoCruceroEnum tipo) {
+        Query qry = this.em.createQuery("SELECT obj FROM Crucero obj WHERE obj.tipo=?1");
+        qry.setParameter(1, tipo);
+        return qry.getResultList();
+    }
 }
