@@ -7,17 +7,12 @@ package ec.edu.espe.distribuidas.hades.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,41 +20,24 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "cliente")
-@NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ClientePK clientePK;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "APELLIDO", nullable = false, length = 100)
     private String apellido;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
     @Column(name = "PAIS", nullable = false, length = 60)
     private String pais;
-    @Size(max = 256)
     @Column(name = "DIRECCION", length = 256)
     private String direccion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 14)
     @Column(name = "TELEFONO", nullable = false, length = 14)
     private String telefono;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 130)
     @Column(name = "CORREO_ELECTRONICO", nullable = false, length = 130)
     private String correoElectronico;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Reserva> reservaList;
 
@@ -69,16 +47,7 @@ public class Cliente implements Serializable {
     public Cliente(ClientePK clientePK) {
         this.clientePK = clientePK;
     }
-
-    public Cliente(ClientePK clientePK, String nombre, String apellido, String pais, String telefono, String correoElectronico) {
-        this.clientePK = clientePK;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.pais = pais;
-        this.telefono = telefono;
-        this.correoElectronico = correoElectronico;
-    }
-
+    
     public Cliente(String identificacion, String tipoIdentificacion) {
         this.clientePK = new ClientePK(identificacion, tipoIdentificacion);
     }

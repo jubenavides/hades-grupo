@@ -6,9 +6,11 @@
 package ec.edu.espe.distribuidas.hades.dao;
 
 import ec.edu.espe.distribuidas.hades.model.Cliente;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,9 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
     public ClienteFacade() {
         super(Cliente.class);
     }
-    
+    public List<Cliente> findByApellido(String apellido) {
+        Query qry = this.em.createQuery("SELECT obj FROM Cliente obj WHERE obj.apellido?1");
+        qry.setParameter(1, apellido);
+        return qry.getResultList();
+    }
 }

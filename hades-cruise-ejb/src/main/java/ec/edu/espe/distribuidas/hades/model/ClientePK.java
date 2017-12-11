@@ -6,27 +6,16 @@
 package ec.edu.espe.distribuidas.hades.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 /**
  *
  * @author Hendrix
  */
 @Embeddable
 public class ClientePK implements Serializable {
-
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
     @Column(name = "IDENTIFICACION", nullable = false, length = 15)
     private String identificacion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 3)
     @Column(name = "TIPO_IDENTIFICACION", nullable = false, length = 3)
     private String tipoIdentificacion;
 
