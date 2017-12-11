@@ -30,9 +30,15 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
     public ClienteFacade() {
         super(Cliente.class);
     }
+     public List<Cliente> findByIdentificacion(String identificacion) {
+        Query qry = this.em.createQuery("SELECT obj FROM Cliente obj WHERE obj.clientePK.identificacion=?1" );
+        qry.setParameter(1, identificacion);
+        return qry.getResultList();
+    }
     public List<Cliente> findByApellido(String apellido) {
-        Query qry = this.em.createQuery("SELECT obj FROM Cliente obj WHERE obj.apellido?1");
+        Query qry = this.em.createQuery("SELECT obj FROM Cliente obj WHERE obj.apellido=?1");
         qry.setParameter(1, apellido);
         return qry.getResultList();
     }
+    
 }
