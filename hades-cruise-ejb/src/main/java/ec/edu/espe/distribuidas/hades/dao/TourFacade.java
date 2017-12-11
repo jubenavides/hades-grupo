@@ -6,9 +6,12 @@
 package ec.edu.espe.distribuidas.hades.dao;
 
 import ec.edu.espe.distribuidas.hades.model.Tour;
+import ec.edu.espe.distribuidas.hades.model.TuristaReserva;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,12 @@ public class TourFacade extends AbstractFacade<Tour> {
 
     public TourFacade() {
         super(Tour.class);
+    }
+    
+    public List<Tour> findByReserva(String tipoTour) {
+        Query qry = this.em.createQuery("SELECT obj FROM Tour obj WHERE obj.tourPK.codTipoTour");
+        qry.setParameter(1, tipoTour);
+        return qry.getResultList();
     }
     
 }
