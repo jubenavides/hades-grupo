@@ -13,35 +13,26 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 
 /**
  *
  * @author Hendrix
  */
 @Entity
-@Table(name = "consumo")
-@NamedQueries({
-    @NamedQuery(name = "Consumo.findAll", query = "SELECT c FROM Consumo c")})
 public class Consumo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ConsumoPK consumoPK;
     @Column(name = "CANTIDAD")
-    private Short cantidad;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private Integer cantidad;
     @Column(name = "VALOR", precision = 8, scale = 2)
     private BigDecimal valor;
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    @Size(max = 100)
     @Column(name = "REFERENCIA", length = 100)
     private String referencia;
     @JoinColumn(name = "COD_ITEM", referencedColumnName = "COD_ITEM", nullable = false, insertable = false, updatable = false)
@@ -70,11 +61,11 @@ public class Consumo implements Serializable {
         this.consumoPK = consumoPK;
     }
 
-    public Short getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Short cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -142,5 +133,5 @@ public class Consumo implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.Consumo[ consumoPK=" + consumoPK + " ]";
     }
-    
+
 }

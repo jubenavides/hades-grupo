@@ -6,11 +6,8 @@
 package ec.edu.espe.distribuidas.hades.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -19,13 +16,8 @@ import javax.validation.constraints.Size;
 @Embeddable
 public class ConsumoPK implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "COD_ITEM", nullable = false)
     private int codItem;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "COD_RESERVA", nullable = false, length = 10)
     private String codReserva;
 
@@ -81,5 +73,5 @@ public class ConsumoPK implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.ConsumoPK[ codItem=" + codItem + ", codReserva=" + codReserva + " ]";
     }
-    
+
 }
