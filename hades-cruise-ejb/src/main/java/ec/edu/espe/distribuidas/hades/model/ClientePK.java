@@ -8,7 +8,6 @@ package ec.edu.espe.distribuidas.hades.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
 /**
  *
  * @author Hendrix
