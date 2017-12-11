@@ -5,22 +5,15 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
+import ec.edu.espe.distribuidas.hades.enums.MenuEnum;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,36 +21,20 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "menu")
-@NamedQueries({
-    @NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m")})
 public class Menu implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "COD_ITEM", nullable = false)
     private Integer codItem;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
-    @Size(max = 300)
     @Column(name = "DESCRIPCION", length = 300)
     private String descripcion;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "PRECIO", nullable = false, precision = 8, scale = 2)
     private BigDecimal precio;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 5)
+    @Enumerated(EnumType.STRING)
     @Column(name = "TIPO", nullable = false, length = 5)
-    private String tipo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menu")
-    private List<Consumo> consumoList;
+    private MenuEnum tipo;
 
     public Menu() {
     }
@@ -66,12 +43,6 @@ public class Menu implements Serializable {
         this.codItem = codItem;
     }
 
-    public Menu(Integer codItem, String nombre, BigDecimal precio, String tipo) {
-        this.codItem = codItem;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.tipo = tipo;
-    }
 
     public Integer getCodItem() {
         return codItem;
@@ -105,21 +76,14 @@ public class Menu implements Serializable {
         this.precio = precio;
     }
 
-    public String getTipo() {
+    public MenuEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(MenuEnum tipo) {
         this.tipo = tipo;
     }
 
-    public List<Consumo> getConsumoList() {
-        return consumoList;
-    }
-
-    public void setConsumoList(List<Consumo> consumoList) {
-        this.consumoList = consumoList;
-    }
 
     @Override
     public int hashCode() {
