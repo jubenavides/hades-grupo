@@ -5,9 +5,6 @@
  */
 package ec.edu.espe.distribuidas.hades.dao;
 
-import ec.edu.espe.distribuidas.hades.enums.TipoCruceroEnum;
-import ec.edu.espe.distribuidas.hades.model.Crucero;
-import ec.edu.espe.distribuidas.hades.model.Reserva;
 import ec.edu.espe.distribuidas.hades.model.TuristaReserva;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -33,8 +30,8 @@ public class TuristaReservaFacade extends AbstractFacade<TuristaReserva> {
     public TuristaReservaFacade() {
         super(TuristaReserva.class);
     }
-     public List<TuristaReserva> findByTipo(Reserva codigo) {
-        Query qry = this.em.createQuery("SELECT obj FROM Reserva obj WHERE obj.tipo=?1");
+     public List<TuristaReserva> findByReserva(String codigo) {
+        Query qry = this.em.createQuery("SELECT obj FROM Reserva obj WHERE obj.cod_reserva=?1");
         qry.setParameter(1, codigo);
         return qry.getResultList();
     }
