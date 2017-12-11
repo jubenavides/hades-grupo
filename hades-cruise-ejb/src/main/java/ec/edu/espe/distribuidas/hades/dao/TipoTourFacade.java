@@ -9,7 +9,8 @@ import ec.edu.espe.distribuidas.hades.model.TipoTour;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+import java.util.List;
+import javax.persistence.Query;
 /**
  *
  * @author Hendrix
@@ -29,4 +30,10 @@ public class TipoTourFacade extends AbstractFacade<TipoTour> {
         super(TipoTour.class);
     }
     
+    public List<TipoTour> findByDuracion(Integer durancionMinima, Integer duracionMaxima) {
+        Query qry = this.em.createQuery("SELECT obj FROM TipoTour obj WHERE obj.duracion BETWEEN ?1 AND ?2");
+        qry.setParameter(1, durancionMinima);
+        qry.setParameter(2, duracionMaxima);
+        return qry.getResultList();
+    }
 }

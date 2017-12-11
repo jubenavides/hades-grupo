@@ -5,19 +5,15 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
+import ec.edu.espe.distribuidas.hades.enums.OrdenTipoValorEnum;
+import ec.edu.espe.distribuidas.hades.enums.TipoValorEnum;
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,53 +21,28 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tipo_valor")
-@NamedQueries({
-    @NamedQuery(name = "TipoValor.findAll", query = "SELECT t FROM TipoValor t")})
 public class TipoValor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "COD_TIPO_VALOR", nullable = false, length = 10)
     private String codTipoValor;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
     @Column(name = "DESCRIPCION", nullable = false, length = 100)
     private String descripcion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 3)
+    @Enumerated(EnumType.STRING)
     @Column(name = "TIPO_COBRO", nullable = false, length = 3)
-    private String tipoCobro;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 3)
+    private TipoValorEnum tipoCobro;
+    @Enumerated(EnumType.STRING)
     @Column(name = "ORDEN", nullable = false, length = 3)
-    private String orden;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoValor")
-    private List<ValorReserva> valorReservaList;
+    private OrdenTipoValorEnum orden;
 
     public TipoValor() {
     }
 
     public TipoValor(String codTipoValor) {
         this.codTipoValor = codTipoValor;
-    }
-
-    public TipoValor(String codTipoValor, String nombre, String descripcion, String tipoCobro, String orden) {
-        this.codTipoValor = codTipoValor;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.tipoCobro = tipoCobro;
-        this.orden = orden;
     }
 
     public String getCodTipoValor() {
@@ -98,28 +69,20 @@ public class TipoValor implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getTipoCobro() {
+    public TipoValorEnum getTipoCobro() {
         return tipoCobro;
     }
 
-    public void setTipoCobro(String tipoCobro) {
+    public void setTipoCobro(TipoValorEnum tipoCobro) {
         this.tipoCobro = tipoCobro;
     }
 
-    public String getOrden() {
+    public OrdenTipoValorEnum getOrden() {
         return orden;
     }
 
-    public void setOrden(String orden) {
+    public void setOrden(OrdenTipoValorEnum orden) {
         this.orden = orden;
-    }
-
-    public List<ValorReserva> getValorReservaList() {
-        return valorReservaList;
-    }
-
-    public void setValorReservaList(List<ValorReserva> valorReservaList) {
-        this.valorReservaList = valorReservaList;
     }
 
     @Override

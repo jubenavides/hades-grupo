@@ -5,10 +5,14 @@
  */
 package ec.edu.espe.distribuidas.hades.dao;
 
+import ec.edu.espe.distribuidas.hades.enums.TipoValorEnum;
+import ec.edu.espe.distribuidas.hades.enums.OrdenTipoValorEnum;
 import ec.edu.espe.distribuidas.hades.model.TipoValor;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +33,15 @@ public class TipoValorFacade extends AbstractFacade<TipoValor> {
         super(TipoValor.class);
     }
     
+    public List<TipoValor> findByTipoCobro(TipoValorEnum tipoCobro) {
+        Query qry = this.em.createQuery("SELECT obj FROM TipoValor obj WHERE obj.tipoCobro");
+        qry.setParameter(1, tipoCobro);
+        return qry.getResultList();
+    }
+    
+    public List<TipoValor> findByOrden(OrdenTipoValorEnum orden) {
+        Query qry = this.em.createQuery("SELECT obj FROM TipoValor obj WHERE obj.orden?1");
+        qry.setParameter(1, orden);
+        return qry.getResultList();
+    }
 }
