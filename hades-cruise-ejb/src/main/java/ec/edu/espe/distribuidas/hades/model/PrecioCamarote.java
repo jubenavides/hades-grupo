@@ -22,12 +22,11 @@ import javax.persistence.Table;
  * @author Hendrix
  */
 @Entity
-@Table(name = "precio_camarote")
+@Table(name = "PRECIO_CAMAROTE")
 public class PrecioCamarote implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COD_PRECIO_CAMAROTE", nullable = false)
     private Integer codPrecioCamarote;
     @Column(name = "COD_TOUR", nullable = false)
@@ -61,12 +60,6 @@ public class PrecioCamarote implements Serializable {
 
     public PrecioCamarote(Integer codPrecioCamarote) {
         this.codPrecioCamarote = codPrecioCamarote;
-    }
-
-    public PrecioCamarote(Integer codPrecioCamarote, BigDecimal porcentajeAdicional, BigDecimal porecentajePersona) {
-        this.codPrecioCamarote = codPrecioCamarote;
-        this.porcentajeAdicional = porcentajeAdicional;
-        this.porecentajePersona = porecentajePersona;
     }
 
     public Integer getCodPrecioCamarote() {

@@ -5,6 +5,7 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
+import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,12 +18,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import static javax.swing.text.StyleConstants.Size;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,69 +31,60 @@ import javax.validation.constraints.Size;
  * @author Hendrix
  */
 @Entity
-@Table(name = "reserva")
-@NamedQueries({
-    @NamedQuery(name = "Reserva.findAll", query = "SELECT r FROM Reserva r")})
+@Table(name = "RESERVA")
 public class Reserva implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "COD_RESERVA", nullable = false, length = 10)
     private String codReserva;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "COD_TOUR", nullable = false)
-    private int codTour;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
+    private Integer codTour;
+
     @Column(name = "COD_TIPO_TOUR", nullable = false, length = 10)
     private String codTipoTour;
-    @Basic(optional = false)
-    @NotNull
+
     @Column(name = "COD_CRUCERO", nullable = false)
-    private int codCrucero;
-    @Basic(optional = false)
-    @NotNull
+    private Integer codCrucero;
+
     @Column(name = "COD_CAMAROTE", nullable = false)
-    private int codCamarote;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
+    private Integer codCamarote;
+
     @Column(name = "COD_TIPO_CAMAROTE", nullable = false, length = 10)
     private String codTipoCamarote;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
+
     @Column(name = "VALOR_FINAL", nullable = false, precision = 8, scale = 2)
     private BigDecimal valorFinal;
-    @Basic(optional = false)
-    @NotNull
+
     @Column(name = "FECHA_EMISION", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEmision;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 3)
+
     @Column(name = "ESTADO", nullable = false, length = 3)
     private String estado;
-    @OneToMany(mappedBy = "codReserva")
-    private List<TuristaReserva> turistaReservaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reserva")
-    private List<ValorReserva> valorReservaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reserva")
-    private List<Consumo> consumoList;
-    @JoinColumn(name = "COD_TIPO_ALIMENTACION", referencedColumnName = "COD_TIPO_ALIMENTACION", nullable = false)
-    @ManyToOne(optional = false)
+
+    @JoinColumn(name = "COD_TIPO_ALIMENTACION", referencedColumnName = "COD_TIPO_ALIMENTACION", insertable = false, updatable = false)
+    @ManyToOne
     private TipoAlimentacion codTipoAlimentacion;
     @JoinColumns({
-        @JoinColumn(name = "IDENTIFICACION", referencedColumnName = "IDENTIFICACION", nullable = false)
-        , @JoinColumn(name = "TIPO_IDENTIFICACION", referencedColumnName = "TIPO_IDENTIFICACION", nullable = false)})
-    @ManyToOne(optional = false)
+        @JoinColumn(name = "IDENTIFICACION", referencedColumnName = "IDENTIFICACION", insertable = false, updatable = false)
+        , @JoinColumn(name = "TIPO_IDENTIFICACION", referencedColumnName = "TIPO_IDENTIFICACION", insertable = false, updatable = false)})
+    @ManyToOne
     private Cliente cliente;
+    
+    @JoinColumns({
+        @JoinColumn(name = "COD_TOUR", referencedColumnName = "COD_TOUR", insertable = false, updatable = false)
+        , @JoinColumn(name = "COD_TIPO_TOUR", referencedColumnName = "COD_TIPO_TOUR", insertable = false, updatable = false)})
+    @ManyToOne
+    private Tour tour;
+    
+    @JoinColumns({
+        @JoinColumn(name = "COD_CAMAROTE", referencedColumnName = "COD_CAMAROTE", insertable = false, updatable = false)
+        , @JoinColumn(name = "COD_CRUCERO", referencedColumnName = "COD_CRUCERO", insertable = false, updatable = false)
+        , @JoinColumn(name = "COD_TIPO_CAMAROTE", referencedColumnName = "COD_TIPO_CAMAROTE", insertable = false, updatable = false)})
+    @ManyToOne
+    private Camarote camarote;
 
     public Reserva() {
     }
@@ -102,17 +93,7 @@ public class Reserva implements Serializable {
         this.codReserva = codReserva;
     }
 
-    public Reserva(String codReserva, int codTour, String codTipoTour, int codCrucero, int codCamarote, String codTipoCamarote, BigDecimal valorFinal, Date fechaEmision, String estado) {
-        this.codReserva = codReserva;
-        this.codTour = codTour;
-        this.codTipoTour = codTipoTour;
-        this.codCrucero = codCrucero;
-        this.codCamarote = codCamarote;
-        this.codTipoCamarote = codTipoCamarote;
-        this.valorFinal = valorFinal;
-        this.fechaEmision = fechaEmision;
-        this.estado = estado;
-    }
+
 
     public String getCodReserva() {
         return codReserva;
@@ -186,29 +167,24 @@ public class Reserva implements Serializable {
         this.estado = estado;
     }
 
-    public List<TuristaReserva> getTuristaReservaList() {
-        return turistaReservaList;
+    public Tour getTour() {
+        return tour;
     }
 
-    public void setTuristaReservaList(List<TuristaReserva> turistaReservaList) {
-        this.turistaReservaList = turistaReservaList;
+    public void setTour(Tour tour) {
+        this.tour = tour;
     }
 
-    public List<ValorReserva> getValorReservaList() {
-        return valorReservaList;
+    public Camarote getCamarote() {
+        return camarote;
     }
 
-    public void setValorReservaList(List<ValorReserva> valorReservaList) {
-        this.valorReservaList = valorReservaList;
+    public void setCamarote(Camarote camarote) {
+        this.camarote = camarote;
     }
 
-    public List<Consumo> getConsumoList() {
-        return consumoList;
-    }
 
-    public void setConsumoList(List<Consumo> consumoList) {
-        this.consumoList = consumoList;
-    }
+
 
     public TipoAlimentacion getCodTipoAlimentacion() {
         return codTipoAlimentacion;
