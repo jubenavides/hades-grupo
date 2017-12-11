@@ -24,23 +24,23 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "valor_reserva")
-@NamedQueries({
-    @NamedQuery(name = "ValorReserva.findAll", query = "SELECT v FROM ValorReserva v")})
+
 public class ValorReserva implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected ValorReservaPK valorReservaPK;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
+
     @Column(name = "VALOR", nullable = false, precision = 8, scale = 2)
     private BigDecimal valor;
-    @JoinColumn(name = "COD_RESERVA", referencedColumnName = "COD_RESERVA", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    
+    @ManyToOne
+    @JoinColumn(name = "COD_RESERVA", referencedColumnName = "COD_RESERVA", insertable = false, updatable = false)
     private Reserva reserva;
-    @JoinColumn(name = "COD_TIPO_VALOR", referencedColumnName = "COD_TIPO_VALOR", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    
+    @ManyToOne
+    @JoinColumn(name = "COD_TIPO_VALOR", referencedColumnName = "COD_TIPO_VALOR", insertable = false, updatable = false)
     private TipoValor tipoValor;
 
     public ValorReserva() {
@@ -48,16 +48,7 @@ public class ValorReserva implements Serializable {
 
     public ValorReserva(ValorReservaPK valorReservaPK) {
         this.valorReservaPK = valorReservaPK;
-    }
-
-    public ValorReserva(ValorReservaPK valorReservaPK, BigDecimal valor) {
-        this.valorReservaPK = valorReservaPK;
-        this.valor = valor;
-    }
-
-    public ValorReserva(String codReserva, String codTipoValor) {
-        this.valorReservaPK = new ValorReservaPK(codReserva, codTipoValor);
-    }
+    }   
 
     public ValorReservaPK getValorReservaPK() {
         return valorReservaPK;

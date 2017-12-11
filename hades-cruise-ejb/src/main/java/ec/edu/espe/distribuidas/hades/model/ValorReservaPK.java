@@ -19,14 +19,9 @@ import javax.validation.constraints.Size;
 @Embeddable
 public class ValorReservaPK implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "COD_RESERVA", nullable = false, length = 10)
     private String codReserva;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
+    
     @Column(name = "COD_TIPO_VALOR", nullable = false, length = 10)
     private String codTipoValor;
 
