@@ -20,7 +20,7 @@ public class ConsumoPK implements Serializable {
 
     @Column(name = "COD_ITEM", nullable = false)
     private Integer codItem;
-    
+
     @Column(name = "COD_RESERVA", nullable = false, length = 10)
     private String codReserva;
 
@@ -76,5 +76,4 @@ public class ConsumoPK implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.ConsumoPK[ codItem=" + codItem + ", codReserva=" + codReserva + " ]";
     }
-
 }

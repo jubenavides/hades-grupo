@@ -89,7 +89,6 @@ public class Menu implements Serializable {
         this.tipo = tipo;
     }
 
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -113,6 +112,5 @@ public class Menu implements Serializable {
     @Override
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.Menu[ codItem=" + codigo + " ]";
-    }
-    
+    }   
 }

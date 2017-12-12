@@ -12,19 +12,17 @@ package ec.edu.espe.distribuidas.hades.enums;
  * @author Hades Cruise Corp.
  */
 public enum TipoCruceroEnum {
-    
+
     OME("OMEGA"),
     ALF("ALFA");
-    
+
     private String texto;
-    
-    private TipoCruceroEnum(String texto){
+
+    private TipoCruceroEnum(String texto) {
         this.texto = texto;
     }
 
     public String getTexto() {
         return texto;
     }
-    
-    
 }

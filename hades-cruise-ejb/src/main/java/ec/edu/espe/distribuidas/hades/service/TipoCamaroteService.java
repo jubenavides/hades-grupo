@@ -24,23 +24,23 @@ public class TipoCamaroteService {
 
     @EJB
     private TipoCamaroteFacade tipoCamaroteFacade;
-    
+
     public List<TipoCamarote> obtenerTodos() {
         return this.tipoCamaroteFacade.findAll();
     }
-    
+
     public TipoCamarote obtenerPorCodigo(String codigo) {
         return this.tipoCamaroteFacade.find(codigo);
     }
-    
+
     public void crear(TipoCamarote tipoCamarote) {
         this.tipoCamaroteFacade.create(tipoCamarote);
     }
-    
+
     public void modificar(TipoCamarote tipoCamarote) {
         this.tipoCamaroteFacade.edit(tipoCamarote);
     }
-    
+
     public void eliminar(String codigo) {
         TipoCamarote tipoCamarote = this.tipoCamaroteFacade.find(codigo);
         this.tipoCamaroteFacade.remove(tipoCamarote);

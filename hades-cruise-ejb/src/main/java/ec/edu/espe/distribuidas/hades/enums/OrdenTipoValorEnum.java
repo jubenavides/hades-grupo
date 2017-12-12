@@ -12,9 +12,10 @@ package ec.edu.espe.distribuidas.hades.enums;
  * @author Hades Cruise Corp.
  */
 public enum OrdenTipoValorEnum {
+
     INC("INCREMENTO"),
     DEC("DECREMENTO");
-    
+
     private String texto;
 
     private OrdenTipoValorEnum(String texto) {
@@ -24,6 +25,4 @@ public enum OrdenTipoValorEnum {
     public String getTexto() {
         return texto;
     }
-
-    
 }

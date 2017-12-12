@@ -25,173 +25,174 @@ import javax.persistence.TemporalType;
  * @author Hades Cruise Corp.
  */
 @Entity
-@Table(name="tour")
-public class Tour implements Serializable{
-    
+@Table(name = "tour")
+public class Tour implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @EmbeddedId
     protected TourPK tourPK;
-    
-    @Column(name="NOMBRE",nullable=false,length=200)
+
+    @Column(name = "NOMBRE", nullable = false, length = 200)
     private String nombre;
-    
-    @Column(name="DURACION",nullable=false)
+
+    @Column(name = "DURACION", nullable = false)
     private Integer duracion;
-    
-    @Column(name="FECHA_INICIO",nullable=false)
+
+    @Column(name = "FECHA_INICIO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
-    
-    @Column(name="FECHA_FIN",nullable=false)
+
+    @Column(name = "FECHA_FIN", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
-    
-    @Column(name="PUERTO_EMBARQUE",nullable=false,length=100)
+
+    @Column(name = "PUERTO_EMBARQUE", nullable = false, length = 100)
     private String puertoEmbarque;
-    
-    @Column(name="PUERTO_DESEMBARQUE",nullable=false,length=100)
+
+    @Column(name = "PUERTO_DESEMBARQUE", nullable = false, length = 100)
     private String puertoDesembarque;
-    
-    @Column(name="PRECIO_BASE",nullable=false,precision=8,scale=2)
+
+    @Column(name = "PRECIO_BASE", nullable = false, precision = 8, scale = 2)
     private BigDecimal precioBase;
-    
-    @Column(name="PORCENTAJE_MENU",nullable=false)
+
+    @Column(name = "PORCENTAJE_MENU", nullable = false)
     private Integer porcentajeMenu;
-    
-    @JoinColumn(name="COD_TIPO_TOUR",referencedColumnName="COD_TIPO_TOUR",nullable=false,insertable=false,updatable=false)
+
+    @JoinColumn(name = "COD_TIPO_TOUR", referencedColumnName = "COD_TIPO_TOUR", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TipoTour tipoTour;
-    
-    @JoinColumn(name="COD_CRUCERO",referencedColumnName="COD_CRUCERO",nullable=false,insertable=false,updatable=false)
+
+    @JoinColumn(name = "COD_CRUCERO", referencedColumnName = "COD_CRUCERO", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Crucero crucero;
-    
-    public Tour(){
+
+    public Tour() {
     }
-    
-    public Tour(TourPK tourPK){
-        this.tourPK=tourPK;
+
+    public Tour(TourPK tourPK) {
+        this.tourPK = tourPK;
     }
-    
-    public Tour(Integer codTour,String codTipoTour,Integer codCrucero){
-        this.tourPK=new TourPK(codTour,codTipoTour,codCrucero);
+
+    public Tour(Integer codTour, String codTipoTour, Integer codCrucero) {
+        this.tourPK = new TourPK(codTour, codTipoTour, codCrucero);
     }
-    
+
     public TourPK getTourPK() {
         return tourPK;
     }
-    
+
     public void setTourPK(TourPK tourPK) {
-        this.tourPK=tourPK;
+        this.tourPK = tourPK;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
-    
+
     public void setNombre(String nombre) {
-        this.nombre=nombre;
+        this.nombre = nombre;
     }
-    
+
     public Integer getDuracion() {
         return duracion;
     }
-    
+
     public void setDuracion(Integer duracion) {
-        this.duracion=duracion;
+        this.duracion = duracion;
     }
-    
+
     public Date getFechaInicio() {
         return fechaInicio;
     }
-    
+
     public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio=fechaInicio;
+        this.fechaInicio = fechaInicio;
     }
-    
+
     public Date getFechaFin() {
         return fechaFin;
     }
-    
+
     public void setFechaFin(Date fechaFin) {
-        this.fechaFin=fechaFin;
+        this.fechaFin = fechaFin;
     }
-    
+
     public String getPuertoEmbarque() {
         return puertoEmbarque;
     }
-    
+
     public void setPuertoEmbarque(String puertoEmbarque) {
-        this.puertoEmbarque=puertoEmbarque;
+        this.puertoEmbarque = puertoEmbarque;
     }
-    
+
     public String getPuertoDesembarque() {
         return puertoDesembarque;
     }
-    
+
     public void setPuertoDesembarque(String puertoDesembarque) {
-        this.puertoDesembarque=puertoDesembarque;
+        this.puertoDesembarque = puertoDesembarque;
     }
-    
+
     public BigDecimal getPrecioBase() {
         return precioBase;
     }
-    
+
     public void setPrecioBase(BigDecimal precioBase) {
-        this.precioBase=precioBase;
+        this.precioBase = precioBase;
     }
+
     public Integer getPorcentajeMenu() {
         return porcentajeMenu;
     }
-    
+
     public void setPorcentajeMenu(Integer porcentajeMenu) {
-        this.porcentajeMenu=porcentajeMenu;
+        this.porcentajeMenu = porcentajeMenu;
     }
-    
+
     public TipoTour getTipoTour() {
         return tipoTour;
     }
-    
+
     public void setTipoTour(TipoTour tipoTour) {
-        this.tipoTour=tipoTour;
+        this.tipoTour = tipoTour;
     }
-    
+
     public Crucero getCrucero() {
         return crucero;
     }
-    
+
     public void setCrucero(Crucero crucero) {
-        this.crucero=crucero;
+        this.crucero = crucero;
     }
-    
+
     @Override
     public int hashCode() {
-        int hash=0;
-        hash+=(tourPK!=null?tourPK.hashCode():0);
+        int hash = 0;
+        hash += (tourPK != null ? tourPK.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
-    public boolean equals(Object obj){
-        if (this==obj){
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (obj==null){
+        if (obj == null) {
             return false;
         }
-        if (getClass()!=obj.getClass()){
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        final Tour other=(Tour) obj;
-        if (!Objects.equals(this.nombre,other.nombre)){
+        final Tour other = (Tour) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
         return true;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Tour{" + "tourPK=" + tourPK + ", nombre=" + nombre + ", duracion=" + duracion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", puertoEmbarque=" + puertoEmbarque + ", puertoDesembarque=" + puertoDesembarque + ", precioBase=" + precioBase + ", porcentajeMenu=" + porcentajeMenu + ", tipoTour=" + tipoTour + ", crucero=" + crucero + '}';
-    }    
+    }
 }

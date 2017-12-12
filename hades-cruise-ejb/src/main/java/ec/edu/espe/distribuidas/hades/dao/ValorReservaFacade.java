@@ -34,13 +34,11 @@ public class ValorReservaFacade extends AbstractFacade<ValorReserva> {
     public ValorReservaFacade() {
         super(ValorReserva.class);
     }
-    
+
     public List<ValorReserva> findByReserva(String codReserva, String codTipoValor) {
         Query qry = this.em.createQuery("SELECT obj FROM ValorReserva obj WHERE obj.valorReservaPK.codReserva =?1 AND obj.valorReservaPK.codTipoValor = ?2");
         qry.setParameter(1, codReserva);
         qry.setParameter(2, codTipoValor);
         return qry.getResultList();
     }
-
-    
 }

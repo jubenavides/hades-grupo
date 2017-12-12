@@ -35,13 +35,13 @@ public class CruceroFacade extends AbstractFacade<Crucero> {
     public CruceroFacade() {
         super(Crucero.class);
     }
-    
+
     public List<Crucero> findByTipo(TipoCruceroEnum tipo) {
         Query qry = this.em.createQuery("SELECT obj FROM Crucero obj WHERE obj.tipo=?1");
         qry.setParameter(1, tipo);
         return qry.getResultList();
     }
-    
+
     public List<Crucero> findByNombre(String nombre) {
         Query qry = this.em.createQuery("SELECT obj FROM Crucero obj WHERE obj.nombre=?1");
         qry.setParameter(1, nombre);

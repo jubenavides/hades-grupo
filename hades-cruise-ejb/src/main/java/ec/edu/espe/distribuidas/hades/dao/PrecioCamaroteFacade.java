@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author 
+ * @author
  */
 @Stateless
 public class PrecioCamaroteFacade extends AbstractFacade<PrecioCamarote> {
@@ -30,5 +30,4 @@ public class PrecioCamaroteFacade extends AbstractFacade<PrecioCamarote> {
     public PrecioCamaroteFacade() {
         super(PrecioCamarote.class);
     }
-    
 }

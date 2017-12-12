@@ -29,17 +29,17 @@ public class TipoValor implements Serializable {
     @Id
     @Column(name = "COD_TIPO_VALOR", nullable = false, length = 10)
     private String codigo;
-    
+
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
-    
+
     @Column(name = "DESCRIPCION", nullable = false, length = 100)
     private String descripcion;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "TIPO_COBRO", nullable = false, length = 3)
     private TipoValorEnum tipoCobro;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "ORDEN", nullable = false, length = 3)
     private OrdenTipoValorEnum orden;
@@ -100,7 +100,7 @@ public class TipoValor implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        //Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TipoValor)) {
             return false;
         }
@@ -115,5 +115,4 @@ public class TipoValor implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.TipoValor[ codTipoValor=" + codigo + " ]";
     }
-    
 }

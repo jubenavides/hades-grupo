@@ -134,6 +134,5 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.Cliente[ clientePK=" + clientePK + " ]";
-    }
-    
+    }  
 }

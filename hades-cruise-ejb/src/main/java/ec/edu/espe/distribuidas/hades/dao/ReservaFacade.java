@@ -7,7 +7,6 @@
  */
 package ec.edu.espe.distribuidas.hades.dao;
 
-
 import ec.edu.espe.distribuidas.hades.model.Reserva;
 import java.util.List;
 import javax.ejb.Stateless;

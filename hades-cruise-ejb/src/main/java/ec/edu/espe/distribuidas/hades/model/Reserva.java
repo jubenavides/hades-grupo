@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author 
+ * @author
  */
 @Entity
 @Table(name = "RESERVA")
@@ -32,13 +32,13 @@ public class Reserva implements Serializable {
     @Id
     @Column(name = "COD_RESERVA", nullable = false, length = 10)
     private String codigo;
-    
+
     @Column(name = "IDENTIFICACION", nullable = false)
     private String identificacion;
-    
+
     @Column(name = "TIPO_IDENTIFICACION", nullable = false)
     private String tipoIdentificacion;
-    
+
     @Column(name = "COD_TOUR", nullable = false)
     private Integer codTour;
 
@@ -50,7 +50,7 @@ public class Reserva implements Serializable {
 
     @Column(name = "COD_CAMAROTE", nullable = false)
     private Integer codCamarote;
-    
+
     @Column(name = "COD_TIPO_ALIMENTACION", nullable = false)
     private Integer codTipoAlimentacion;
 
@@ -63,27 +63,27 @@ public class Reserva implements Serializable {
     @Column(name = "FECHA_EMISION", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEmision;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO", nullable = false, length = 3)
-    private EstadoReservaEnum  estado;
+    private EstadoReservaEnum estado;
 
     @JoinColumn(name = "COD_TIPO_ALIMENTACION", referencedColumnName = "COD_TIPO_ALIMENTACION", insertable = false, updatable = false)
     @ManyToOne
     private TipoAlimentacion tipoAlimentacion;
-    
+
     @JoinColumns({
         @JoinColumn(name = "IDENTIFICACION", referencedColumnName = "IDENTIFICACION", insertable = false, updatable = false)
         , @JoinColumn(name = "TIPO_IDENTIFICACION", referencedColumnName = "TIPO_IDENTIFICACION", insertable = false, updatable = false)})
     @ManyToOne
     private Cliente cliente;
-    
+
     @JoinColumns({
         @JoinColumn(name = "COD_TOUR", referencedColumnName = "COD_TOUR", insertable = false, updatable = false)
         , @JoinColumn(name = "COD_TIPO_TOUR", referencedColumnName = "COD_TIPO_TOUR", insertable = false, updatable = false)})
     @ManyToOne
     private Tour tour;
-    
+
     @JoinColumns({
         @JoinColumn(name = "COD_CAMAROTE", referencedColumnName = "COD_CAMAROTE", insertable = false, updatable = false)
         , @JoinColumn(name = "COD_CRUCERO", referencedColumnName = "COD_CRUCERO", insertable = false, updatable = false)
@@ -125,7 +125,7 @@ public class Reserva implements Serializable {
     public void setTipoAlimentacion(TipoAlimentacion tipoAlimentacion) {
         this.tipoAlimentacion = tipoAlimentacion;
     }
-    
+
     public int getCodTour() {
         return codTour;
     }
@@ -189,7 +189,7 @@ public class Reserva implements Serializable {
     public void setEstado(EstadoReservaEnum estado) {
         this.estado = estado;
     }
-    
+
     public Integer getCodTipoAlimentacion() {
         return codTipoAlimentacion;
     }
@@ -213,7 +213,7 @@ public class Reserva implements Serializable {
     public void setCamarote(Camarote camarote) {
         this.camarote = camarote;
     }
-    
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -246,5 +246,4 @@ public class Reserva implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.Reserva[ codReserva=" + codigo + " ]";
     }
-    
 }

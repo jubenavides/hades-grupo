@@ -12,20 +12,19 @@ package ec.edu.espe.distribuidas.hades.enums;
  * @author Hades Cruise Corp.
  */
 public enum MenuEnum {
-   ENT("ENTRADA"),
-   SNA("SNACK"),
-   BCA("BEBIDA ALCHOLICA"),
-   BSA("BEBIDA LIBRE DE ALCHOL");
-   
-   private String texto;
-   
-   private MenuEnum(String texto)
-   {
-       this.texto = texto;
-   }
+
+    ENT("ENTRADA"),
+    SNA("SNACK"),
+    BCA("BEBIDA ALCHOLICA"),
+    BSA("BEBIDA LIBRE DE ALCHOL");
+
+    private String texto;
+
+    private MenuEnum(String texto) {
+        this.texto = texto;
+    }
 
     public String getTexto() {
         return texto;
     }
-   
 }

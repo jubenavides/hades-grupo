@@ -39,6 +39,5 @@ public class TuristaReservaFacade extends AbstractFacade<TuristaReserva> {
         Query qry = this.em.createQuery("SELECT obj FROM TuristaReserva obj WHERE obj.codReserva =?1");
         qry.setParameter(1, codigo);
         return qry.getResultList();
-    }
-    
+    } 
 }

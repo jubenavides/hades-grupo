@@ -22,14 +22,14 @@ import javax.persistence.Table;
 public class TipoAlimentacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "COD_TIPO_ALIMENTACION", nullable = false, length = 10)
     private String codigo;
-    
+
     @Column(name = "DESCRIPCION", nullable = false, length = 100)
     private String descripcion;
-    
+
     public TipoAlimentacion() {
     }
 
@@ -62,7 +62,7 @@ public class TipoAlimentacion implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        //Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof TipoAlimentacion)) {
             return false;
         }
@@ -77,5 +77,4 @@ public class TipoAlimentacion implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.TipoAlimentacion[ codTipoAlimentacion=" + codigo + " ]";
     }
-    
 }

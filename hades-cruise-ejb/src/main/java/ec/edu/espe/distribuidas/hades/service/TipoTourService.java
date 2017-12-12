@@ -24,23 +24,23 @@ public class TipoTourService {
 
     @EJB
     private TipoTourFacade tipoTourFacade;
-    
+
     public List<TipoTour> obtenerTodos() {
         return this.tipoTourFacade.findAll();
     }
-    
+
     public TipoTour obtenerPorCodigo(String codigo) {
         return this.tipoTourFacade.find(codigo);
     }
-    
+
     public void crear(TipoTour tipoTour) {
         this.tipoTourFacade.create(tipoTour);
     }
-    
+
     public void modificar(TipoTour tipoTour) {
         this.tipoTourFacade.edit(tipoTour);
     }
-    
+
     public void eliminar(String codigo) {
         TipoTour tipoTour = this.tipoTourFacade.find(codigo);
         this.tipoTourFacade.remove(tipoTour);

@@ -22,20 +22,19 @@ import javax.persistence.Table;
 public class TipoTour implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "COD_TIPO_TOUR", nullable = false, length = 10)
     private String codigo;
-    
+
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
-    
+
     @Column(name = "DESCRIPCION", length = 500)
     private String descripcion;
-    
+
     @Column(name = "DURACION", nullable = false)
     private Integer duracion;
-
 
     public TipoTour() {
     }
@@ -100,5 +99,4 @@ public class TipoTour implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.TipoTour[ codTipoTour=" + codigo + " ]";
     }
-    
 }

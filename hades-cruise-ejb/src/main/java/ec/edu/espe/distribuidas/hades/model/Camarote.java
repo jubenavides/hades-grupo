@@ -127,6 +127,5 @@ public class Camarote implements Serializable {
     @Override
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.Camarote[ camarotePK=" + camarotePK + " ]";
-    }
-    
+    }   
 }

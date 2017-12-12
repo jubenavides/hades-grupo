@@ -20,7 +20,7 @@ public class ValorReservaPK implements Serializable {
 
     @Column(name = "COD_RESERVA", nullable = false, length = 10)
     private String codReserva;
-    
+
     @Column(name = "COD_TIPO_VALOR", nullable = false, length = 10)
     private String codTipoValor;
 
@@ -76,5 +76,4 @@ public class ValorReservaPK implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.ValorReservaPK[ codReserva=" + codReserva + ", codTipoValor=" + codTipoValor + " ]";
     }
-    
 }

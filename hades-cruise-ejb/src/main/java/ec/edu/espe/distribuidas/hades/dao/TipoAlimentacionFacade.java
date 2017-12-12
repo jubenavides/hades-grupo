@@ -31,6 +31,5 @@ public class TipoAlimentacionFacade extends AbstractFacade<TipoAlimentacion> {
 
     public TipoAlimentacionFacade() {
         super(TipoAlimentacion.class);
-    }
-    
+    }    
 }

@@ -44,7 +44,7 @@ public class ConsumoFacade extends AbstractFacade<Consumo> {
 
     public List<Consumo> findByTour(Integer codTour, String codTipoTour, Integer codCrucero) {
         Query qry = this.em.createQuery("SELECT objC, objR FROM Consumo objC, Reserva objR WHERE "
-                + "objC.consumoPK.codReserva = objR.codReserva AND objR.codTour = ?1 "
+                + "objC.consumoPK.codReserva = objR.codigo AND objR.codTour = ?1 "
                 + "AND objR.codTipoTour = ?2 AND objR.codCrucero = ?3");
         qry.setParameter(1, codTour);
         qry.setParameter(2, codTipoTour);

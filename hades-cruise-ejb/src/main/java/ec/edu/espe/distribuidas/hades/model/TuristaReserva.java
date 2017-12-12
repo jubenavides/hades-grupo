@@ -32,10 +32,10 @@ public class TuristaReserva implements Serializable {
     @Id
     @Column(name = "COD_TURISTA_RESERVA", nullable = false)
     private Integer codigo;
-   
+
     @Column(name = "TIPO_IDENTIFICACION", nullable = false, length = 3)
     private String tipoIdentificacion;
-    
+
     @Column(name = "IDENTIFICACION", nullable = false, length = 15)
     private String identificacion;
 
@@ -67,7 +67,6 @@ public class TuristaReserva implements Serializable {
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
-
 
     public String getTipoIdentificacion() {
         return tipoIdentificacion;
@@ -146,7 +145,4 @@ public class TuristaReserva implements Serializable {
     public String toString() {
         return "TuristaReserva{" + "codigo=" + codigo + ", tipoIdentificacion=" + tipoIdentificacion + ", identificacion=" + identificacion + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", pesoMaleta=" + pesoMaleta + ", codReserva=" + codReserva + '}';
     }
-
-    
-    
 }

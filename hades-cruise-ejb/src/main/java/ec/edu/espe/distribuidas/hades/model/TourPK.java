@@ -17,78 +17,78 @@ import javax.persistence.Embeddable;
  * @author Hades Cruise Corp.
  */
 @Embeddable
-public class TourPK implements Serializable{
-    
-    @Column(name="COD_TOUR", nullable=false)
+public class TourPK implements Serializable {
+
+    @Column(name = "COD_TOUR", nullable = false)
     private Integer codTour;
-    
-    @Column(name="COD_TIPO_TOUR", nullable=false, length=10)
+
+    @Column(name = "COD_TIPO_TOUR", nullable = false, length = 10)
     private String codTipoTour;
-    
-    @Column(name="COD_CRUCERO", nullable=false)
+
+    @Column(name = "COD_CRUCERO", nullable = false)
     private Integer codCrucero;
-    
-    public TourPK(){
+
+    public TourPK() {
     }
-    
-    public TourPK(Integer codTour, String codTipoTour, Integer codCrucero){
-        this.codTour=codTour;
-        this.codTipoTour=codTipoTour;
-        this.codCrucero=codCrucero;
+
+    public TourPK(Integer codTour, String codTipoTour, Integer codCrucero) {
+        this.codTour = codTour;
+        this.codTipoTour = codTipoTour;
+        this.codCrucero = codCrucero;
     }
-    
-    public Integer getCodTour(){
+
+    public Integer getCodTour() {
         return codTour;
     }
-    
-    public void setCodTour(Integer codTour){
-        this.codTour=codTour;
+
+    public void setCodTour(Integer codTour) {
+        this.codTour = codTour;
     }
-    
-    public String getCodTipoTour(){
+
+    public String getCodTipoTour() {
         return codTipoTour;
     }
-    
-    public void setCodTipoTour(String codTipoTour){
-        this.codTipoTour=codTipoTour;
+
+    public void setCodTipoTour(String codTipoTour) {
+        this.codTipoTour = codTipoTour;
     }
-    
-    public Integer getCodCrucero(){
+
+    public Integer getCodCrucero() {
         return codCrucero;
     }
-    
-    public void setCodCrucero(Integer codCrucero){
-        this.codCrucero=codCrucero;
+
+    public void setCodCrucero(Integer codCrucero) {
+        this.codCrucero = codCrucero;
     }
-    
+
     @Override
-    public int hashCode(){
-        Integer hash=0;
-        hash+=(Integer) codTour;
-        hash+=(codTipoTour!=null?codTipoTour.hashCode():0);
-        hash+=(Integer)codCrucero;
+    public int hashCode() {
+        Integer hash = 0;
+        hash += (Integer) codTour;
+        hash += (codTipoTour != null ? codTipoTour.hashCode() : 0);
+        hash += (Integer) codCrucero;
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj){
-        if (this==obj){
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (obj==null){
+        if (obj == null) {
             return false;
         }
-        if (getClass()!=obj.getClass()){
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        final TourPK other=(TourPK) obj;
+        final TourPK other = (TourPK) obj;
 
-        if (!Objects.equals(this.codTour,other.codTour)){
+        if (!Objects.equals(this.codTour, other.codTour)) {
             return false;
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
         return "TourPK{" + "codTour=" + codTour + ", codTipoTour=" + codTipoTour + ", codCrucero=" + codCrucero + '}';

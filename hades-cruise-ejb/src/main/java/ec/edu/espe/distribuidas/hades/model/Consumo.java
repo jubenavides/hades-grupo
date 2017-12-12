@@ -15,6 +15,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,30 +24,31 @@ import javax.persistence.TemporalType;
  * @author Hades Cruise Corp.
  */
 @Entity
+@Table(name = "consumo")
 public class Consumo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @EmbeddedId
     protected ConsumoPK consumoPK;
-    
+
     @Column(name = "CANTIDAD")
     private Integer cantidad;
-    
+
     @Column(name = "VALOR", precision = 8, scale = 2)
     private BigDecimal valor;
-    
+
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    
+
     @Column(name = "REFERENCIA", length = 100)
     private String referencia;
-    
+
     @JoinColumn(name = "COD_ITEM", referencedColumnName = "COD_ITEM", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Menu menu;
-    
+
     @JoinColumn(name = "COD_RESERVA", referencedColumnName = "COD_RESERVA", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Reserva reserva;
@@ -142,5 +144,4 @@ public class Consumo implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.Consumo[ consumoPK=" + consumoPK + " ]";
     }
-
 }

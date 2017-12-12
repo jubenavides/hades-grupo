@@ -22,11 +22,11 @@ import javax.persistence.Table;
 public class TipoCamarote implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "COD_TIPO_CAMAROTE", nullable = false, length = 10)
     private String codigo;
-    
+
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
 
@@ -77,5 +77,4 @@ public class TipoCamarote implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.TipoCamarote[ codTipoCamarote=" + codigo + " ]";
     }
-    
 }

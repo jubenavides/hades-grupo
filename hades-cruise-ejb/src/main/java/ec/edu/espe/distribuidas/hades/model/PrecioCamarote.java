@@ -19,43 +19,43 @@ import javax.persistence.Table;
 
 /**
  *
- * @Hades Cruise Corp. 
+ * @Hades Cruise Corp.
  */
 @Entity
 @Table(name = "PRECIO_CAMAROTE")
 public class PrecioCamarote implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "COD_PRECIO_CAMAROTE", nullable = false)
     private Integer codPrecioCamarote;
-    
+
     @Column(name = "COD_TOUR", nullable = false)
     private Integer codTour;
-    
+
     @Column(name = "COD_TIPO_TOUR", nullable = false, length = 10)
     private String codTipoTour;
-    
+
     @Column(name = "COD_CRUCERO", nullable = false)
     private Integer codCrucero;
-    
+
     @Column(name = "COD_TIPO_CAMAROTE", nullable = false, length = 10)
     private String codTipoCamarote;
-    
+
     @Column(name = "PORCENTAJE_ADICIONAL", nullable = false, precision = 5, scale = 2)
     private BigDecimal porcentajeAdicional;
-    
+
     @Column(name = "PORECENTAJE_PERSONA", nullable = false, precision = 5, scale = 2)
     private BigDecimal porecentajePersona;
-    
+
     @JoinColumns({
         @JoinColumn(name = "COD_TOUR", referencedColumnName = "COD_TOUR", insertable = false, updatable = false)
         , @JoinColumn(name = "COD_TIPO_TOUR", referencedColumnName = "COD_TIPO_TOUR", insertable = false, updatable = false)
         , @JoinColumn(name = "COD_CRUCERO", referencedColumnName = "COD_CRUCERO", insertable = false, updatable = false)})
     @ManyToOne
     private Tour tour;
-    
+
     @JoinColumn(name = "COD_TIPO_CAMAROTE", referencedColumnName = "COD_TIPO_CAMAROTE", insertable = false, updatable = false)
     @ManyToOne
     private TipoCamarote tipoCamarote;
@@ -163,5 +163,4 @@ public class PrecioCamarote implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.PrecioCamarote[ codPrecioCamarote=" + codPrecioCamarote + " ]";
     }
-    
 }

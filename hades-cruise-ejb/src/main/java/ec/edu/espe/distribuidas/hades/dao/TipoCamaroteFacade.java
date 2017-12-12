@@ -32,5 +32,4 @@ public class TipoCamaroteFacade extends AbstractFacade<TipoCamarote> {
     public TipoCamaroteFacade() {
         super(TipoCamarote.class);
     }
-    
 }

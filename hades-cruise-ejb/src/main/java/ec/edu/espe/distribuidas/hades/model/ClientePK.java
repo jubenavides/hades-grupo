@@ -17,10 +17,10 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class ClientePK implements Serializable {
-    
+
     @Column(name = "IDENTIFICACION", nullable = false, length = 15)
     private String identificacion;
-    
+
     @Column(name = "TIPO_IDENTIFICACION", nullable = false, length = 3)
     private String tipoIdentificacion;
 
@@ -76,5 +76,4 @@ public class ClientePK implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.ClientePK[ identificacion=" + identificacion + ", tipoIdentificacion=" + tipoIdentificacion + " ]";
     }
-    
 }

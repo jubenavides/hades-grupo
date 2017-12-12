@@ -22,21 +22,20 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "valor_reserva")
-
 public class ValorReserva implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @EmbeddedId
     protected ValorReservaPK valorReservaPK;
 
     @Column(name = "VALOR", nullable = false, precision = 8, scale = 2)
     private BigDecimal valor;
-    
+
     @ManyToOne
     @JoinColumn(name = "COD_RESERVA", referencedColumnName = "COD_RESERVA", insertable = false, updatable = false)
     private Reserva reserva;
-    
+
     @ManyToOne
     @JoinColumn(name = "COD_TIPO_VALOR", referencedColumnName = "COD_TIPO_VALOR", insertable = false, updatable = false)
     private TipoValor tipoValor;
@@ -46,7 +45,7 @@ public class ValorReserva implements Serializable {
 
     public ValorReserva(ValorReservaPK valorReservaPK) {
         this.valorReservaPK = valorReservaPK;
-    }   
+    }
 
     public ValorReservaPK getValorReservaPK() {
         return valorReservaPK;
@@ -104,5 +103,4 @@ public class ValorReserva implements Serializable {
     public String toString() {
         return "ec.edu.espe.distribuidas.hades.model.ValorReserva[ valorReservaPK=" + valorReservaPK + " ]";
     }
-    
 }

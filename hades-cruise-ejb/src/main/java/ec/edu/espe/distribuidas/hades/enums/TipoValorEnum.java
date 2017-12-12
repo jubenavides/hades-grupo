@@ -12,18 +12,17 @@ package ec.edu.espe.distribuidas.hades.enums;
  * @author Hades Cruise Corp.
  */
 public enum TipoValorEnum {
-    
+
     POR("PORCENTAJE"),
     VAL("VALOR");
-    
+
     private String texto;
-    
-    private TipoValorEnum(String texto){
+
+    private TipoValorEnum(String texto) {
         this.texto = texto;
     }
 
     public String getTexto() {
         return texto;
     }
-    
 }
