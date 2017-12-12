@@ -26,10 +26,15 @@ import javax.persistence.TemporalType;
 @Table(name = "RESERVA")
 public class Reserva implements Serializable {
 
-    
     @Id
     @Column(name = "COD_RESERVA", nullable = false, length = 10)
-    private String codReserva;
+    private String codigo;
+    
+    @Column(name = "IDENTIFICACION", nullable = false)
+    private String identificacion;
+    
+    @Column(name = "TIPO_IDENTIFICACION", nullable = false)
+    private String tipoIdentificacion;
     @Column(name = "COD_TOUR", nullable = false)
     private Integer codTour;
 
@@ -41,10 +46,12 @@ public class Reserva implements Serializable {
 
     @Column(name = "COD_CAMAROTE", nullable = false)
     private Integer codCamarote;
+    
+    @Column(name = "COD_TIPO_ALIMENTACION", nullable = false)
+    private Integer codTipoAlimentacion;
 
     @Column(name = "COD_TIPO_CAMAROTE", nullable = false, length = 10)
     private String codTipoCamarote;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
 
     @Column(name = "VALOR_FINAL", nullable = false, precision = 8, scale = 2)
     private BigDecimal valorFinal;
@@ -52,13 +59,15 @@ public class Reserva implements Serializable {
     @Column(name = "FECHA_EMISION", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEmision;
-
+    
+    @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO", nullable = false, length = 3)
-    private String estado;
+    private MenuEnum estado;
 
     @JoinColumn(name = "COD_TIPO_ALIMENTACION", referencedColumnName = "COD_TIPO_ALIMENTACION", insertable = false, updatable = false)
     @ManyToOne
-    private TipoAlimentacion codTipoAlimentacion;
+    private TipoAlimentacion tipoAlimentacion;
+    
     @JoinColumns({
         @JoinColumn(name = "IDENTIFICACION", referencedColumnName = "IDENTIFICACION", insertable = false, updatable = false)
         , @JoinColumn(name = "TIPO_IDENTIFICACION", referencedColumnName = "TIPO_IDENTIFICACION", insertable = false, updatable = false)})
@@ -87,14 +96,6 @@ public class Reserva implements Serializable {
 
 
 
-    public String getCodReserva() {
-        return codReserva;
-    }
-
-    public void setCodReserva(String codReserva) {
-        this.codReserva = codReserva;
-    }
-
     public int getCodTour() {
         return codTour;
     }
@@ -119,7 +120,7 @@ public class Reserva implements Serializable {
         this.codCrucero = codCrucero;
     }
 
-    public int getCodCamarote() {
+    public Integer getCodCamarote() {
         return codCamarote;
     }
 
@@ -174,17 +175,8 @@ public class Reserva implements Serializable {
     public void setCamarote(Camarote camarote) {
         this.camarote = camarote;
     }
-
-
-
-
-    public TipoAlimentacion getCodTipoAlimentacion() {
-        return codTipoAlimentacion;
-    }
-
-    public void setCodTipoAlimentacion(TipoAlimentacion codTipoAlimentacion) {
-        this.codTipoAlimentacion = codTipoAlimentacion;
-    }
+    
+    
 
     public Cliente getCliente() {
         return cliente;

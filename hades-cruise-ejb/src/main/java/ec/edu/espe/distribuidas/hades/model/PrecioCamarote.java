@@ -17,22 +17,27 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Hendrix
+ * @author 
  */
 @Entity
 @Table(name = "PRECIO_CAMAROTE")
 public class PrecioCamarote implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "COD_PRECIO_CAMAROTE", nullable = false)
     private Integer codPrecioCamarote;
+    
     @Column(name = "COD_TOUR", nullable = false)
     private Integer codTour;
+    
     @Column(name = "COD_TIPO_TOUR", nullable = false, length = 10)
     private String codTipoTour;
+    
     @Column(name = "COD_CRUCERO", nullable = false)
     private Integer codCrucero;
+    
     @Column(name = "COD_TIPO_CAMAROTE", nullable = false, length = 10)
     private String codTipoCamarote;
     
