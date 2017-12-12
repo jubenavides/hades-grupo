@@ -21,7 +21,7 @@ import javax.persistence.PersistenceContext;
 @LocalBean
 public class TipoAlimentacionFacade extends AbstractFacade<TipoAlimentacion> {
 
-    @PersistenceContext(unitName = "ec.edu.espe.distribuidas.hades_hades-cruise-ejb_ejb_1PU")
+    @PersistenceContext(unitName = "punit")
     private EntityManager em;
 
     @Override

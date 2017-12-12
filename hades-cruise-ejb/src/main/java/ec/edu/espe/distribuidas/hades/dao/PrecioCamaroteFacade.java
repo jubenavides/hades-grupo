@@ -19,7 +19,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class PrecioCamaroteFacade extends AbstractFacade<PrecioCamarote> {
 
-    @PersistenceContext(unitName = "ec.edu.espe.distribuidas.hades_hades-cruise-ejb_ejb_1PU")
+    @PersistenceContext(unitName = "punit")
     private EntityManager em;
 
     @Override

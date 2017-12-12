@@ -23,7 +23,7 @@ import javax.persistence.Query;
 @LocalBean
 public class ValorReservaFacade extends AbstractFacade<ValorReserva> {
 
-    @PersistenceContext(unitName = "ec.edu.espe.distribuidas.hades_hades-cruise-ejb_ejb_1PU")
+    @PersistenceContext(unitName = "punit")
     private EntityManager em;
 
     @Override

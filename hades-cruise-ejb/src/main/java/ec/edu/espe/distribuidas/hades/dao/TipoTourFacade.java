@@ -22,7 +22,7 @@ import javax.persistence.Query;
 @LocalBean
 public class TipoTourFacade extends AbstractFacade<TipoTour> {
 
-    @PersistenceContext(unitName = "ec.edu.espe.distribuidas.hades_hades-cruise-ejb_ejb_1PU")
+    @PersistenceContext(unitName = "punit")
     private EntityManager em;
 
     @Override

@@ -21,7 +21,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class ReservaFacade extends AbstractFacade<Reserva> {
 
-    @PersistenceContext(unitName = "ec.edu.espe.distribuidas.hades_hades-cruise-ejb_ejb_1PU")
+    @PersistenceContext(unitName = "punit")
     private EntityManager em;
 
     @Override
