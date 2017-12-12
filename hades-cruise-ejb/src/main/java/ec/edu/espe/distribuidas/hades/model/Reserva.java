@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Hendrix
+ * @author 
  */
 @Entity
 @Table(name = "RESERVA")
@@ -35,6 +35,7 @@ public class Reserva implements Serializable {
     
     @Column(name = "TIPO_IDENTIFICACION", nullable = false)
     private String tipoIdentificacion;
+    
     @Column(name = "COD_TOUR", nullable = false)
     private Integer codTour;
 
@@ -62,7 +63,7 @@ public class Reserva implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO", nullable = false, length = 3)
-    private MenuEnum estado;
+    private EstadoReservaEum  estado;
 
     @JoinColumn(name = "COD_TIPO_ALIMENTACION", referencedColumnName = "COD_TIPO_ALIMENTACION", insertable = false, updatable = false)
     @ManyToOne
@@ -94,8 +95,38 @@ public class Reserva implements Serializable {
         this.codReserva = codReserva;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
 
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public String getTipoIdentificacion() {
+        return tipoIdentificacion;
+    }
+
+    public void setTipoIdentificacion(String tipoIdentificacion) {
+        this.tipoIdentificacion = tipoIdentificacion;
+    }
+
+    public TipoAlimentacion getTipoAlimentacion() {
+        return tipoAlimentacion;
+    }
+
+    public void setTipoAlimentacion(TipoAlimentacion tipoAlimentacion) {
+        this.tipoAlimentacion = tipoAlimentacion;
+    }
+    
     public int getCodTour() {
         return codTour;
     }
@@ -152,12 +183,20 @@ public class Reserva implements Serializable {
         this.fechaEmision = fechaEmision;
     }
 
-    public String getEstado() {
+    public EstadoReservaEum getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoReservaEum estado) {
         this.estado = estado;
+    }
+    
+    public Integer getCodTipoAlimentacion() {
+        return codTipoAlimentacion;
+    }
+
+    public void setCodTipoAlimentacion(Integer codTipoAlimentacion) {
+        this.codTipoAlimentacion = codTipoAlimentacion;
     }
 
     public Tour getTour() {
