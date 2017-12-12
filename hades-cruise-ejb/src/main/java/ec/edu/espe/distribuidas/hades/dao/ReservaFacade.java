@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.dao;
 
@@ -15,7 +17,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author 
+ * @author Hades Cruise Corp.
  */
 @Stateless
 public class ReservaFacade extends AbstractFacade<Reserva> {
@@ -32,16 +34,13 @@ public class ReservaFacade extends AbstractFacade<Reserva> {
         super(Reserva.class);
     }
      public List<Reserva> findByCliente(Integer identificacion, String codReserva) {
-        Query qry = this.em.createQuery("SELECT obj FROM Reserva obj WHERE obj.identificacion =?1 AND obj.codReserva = ?2");
+        Query qry = this.em.createQuery("SELECT obj FROM Reserva obj WHERE obj.cliente.clientePK.identificacion =?1 AND obj.codigo = ?2");
         qry.setParameter(1, identificacion);
         qry.setParameter(2, codReserva);
         return qry.getResultList();
     }
     public List<Reserva> findByTour(Integer codTour, String codTipoTour, Integer codCrucero,String codReserva) {
-        Query qry = this.em.createQuery("SELECT obj FROM Reserva obj WHERE "
-                + "obj.codReserva = ?1 "
-                + "AND obj.codTour = ?2 AND obj.CodTipoTour = ?3"
-                + "AND objR.codCrucer = ?4 ");
+        Query qry = this.em.createQuery("SELECT obj FROM Reserva obj WHERE obj.codigo = ?1 AND obj.codTour = ?2 AND obj.codTipoTour = ?3 AND obj.codCrucero = ?4 ");
         qry.setParameter(1, codReserva);
         qry.setParameter(2, codTour);
         qry.setParameter(3, codTipoTour);

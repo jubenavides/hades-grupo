@@ -1,22 +1,24 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.dao;
 
 import ec.edu.espe.distribuidas.hades.model.Cliente;
-import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 @Stateless
+@LocalBean
 public class ClienteFacade extends AbstractFacade<Cliente> {
 
     @PersistenceContext(unitName = "ec.edu.espe.distribuidas.hades_hades-cruise-ejb_ejb_1PU")
@@ -29,16 +31,6 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
 
     public ClienteFacade() {
         super(Cliente.class);
-    }
-     public List<Cliente> findByIdentificacion(String identificacion) {
-        Query qry = this.em.createQuery("SELECT obj FROM Cliente obj WHERE obj.clientePK.identificacion=?1" );
-        qry.setParameter(1, identificacion);
-        return qry.getResultList();
-    }
-    public List<Cliente> findByApellido(String apellido) {
-        Query qry = this.em.createQuery("SELECT obj FROM Cliente obj WHERE obj.apellido=?1");
-        qry.setParameter(1, apellido);
-        return qry.getResultList();
     }
     
 }

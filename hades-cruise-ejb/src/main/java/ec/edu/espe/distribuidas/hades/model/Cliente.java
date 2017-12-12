@@ -1,45 +1,48 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.model;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected ClientePK clientePK;
+    
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
+    
     @Column(name = "APELLIDO", nullable = false, length = 100)
     private String apellido;
+    
     @Column(name = "PAIS", nullable = false, length = 60)
     private String pais;
+    
     @Column(name = "DIRECCION", length = 256)
     private String direccion;
+    
     @Column(name = "TELEFONO", nullable = false, length = 14)
     private String telefono;
+    
     @Column(name = "CORREO_ELECTRONICO", nullable = false, length = 130)
     private String correoElectronico;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Reserva> reservaList;
 
     public Cliente() {
     }
@@ -107,15 +110,7 @@ public class Cliente implements Serializable {
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
-
-    public List<Reserva> getReservaList() {
-        return reservaList;
-    }
-
-    public void setReservaList(List<Reserva> reservaList) {
-        this.reservaList = reservaList;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

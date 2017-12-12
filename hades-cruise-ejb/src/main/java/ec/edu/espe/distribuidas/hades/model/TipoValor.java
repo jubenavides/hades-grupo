@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.model;
 
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 @Entity
 @Table(name = "tipo_valor")
@@ -26,14 +28,18 @@ public class TipoValor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "COD_TIPO_VALOR", nullable = false, length = 10)
-    private String codTipoValor;
+    private String codigo;
+    
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
+    
     @Column(name = "DESCRIPCION", nullable = false, length = 100)
     private String descripcion;
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "TIPO_COBRO", nullable = false, length = 3)
     private TipoValorEnum tipoCobro;
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "ORDEN", nullable = false, length = 3)
     private OrdenTipoValorEnum orden;
@@ -42,15 +48,15 @@ public class TipoValor implements Serializable {
     }
 
     public TipoValor(String codTipoValor) {
-        this.codTipoValor = codTipoValor;
+        this.codigo = codTipoValor;
     }
 
     public String getCodTipoValor() {
-        return codTipoValor;
+        return codigo;
     }
 
     public void setCodTipoValor(String codTipoValor) {
-        this.codTipoValor = codTipoValor;
+        this.codigo = codTipoValor;
     }
 
     public String getNombre() {
@@ -88,7 +94,7 @@ public class TipoValor implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codTipoValor != null ? codTipoValor.hashCode() : 0);
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
@@ -99,7 +105,7 @@ public class TipoValor implements Serializable {
             return false;
         }
         TipoValor other = (TipoValor) object;
-        if ((this.codTipoValor == null && other.codTipoValor != null) || (this.codTipoValor != null && !this.codTipoValor.equals(other.codTipoValor))) {
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
@@ -107,7 +113,7 @@ public class TipoValor implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.distribuidas.hades.model.TipoValor[ codTipoValor=" + codTipoValor + " ]";
+        return "ec.edu.espe.distribuidas.hades.model.TipoValor[ codTipoValor=" + codigo + " ]";
     }
     
 }

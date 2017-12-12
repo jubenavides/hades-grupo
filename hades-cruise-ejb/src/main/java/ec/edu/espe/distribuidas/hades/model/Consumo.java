@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.model;
 
@@ -18,26 +20,33 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 @Entity
 public class Consumo implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected ConsumoPK consumoPK;
+    
     @Column(name = "CANTIDAD")
     private Integer cantidad;
+    
     @Column(name = "VALOR", precision = 8, scale = 2)
     private BigDecimal valor;
+    
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    
     @Column(name = "REFERENCIA", length = 100)
     private String referencia;
+    
     @JoinColumn(name = "COD_ITEM", referencedColumnName = "COD_ITEM", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Menu menu;
+    
     @JoinColumn(name = "COD_RESERVA", referencedColumnName = "COD_RESERVA", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Reserva reserva;
@@ -49,7 +58,7 @@ public class Consumo implements Serializable {
         this.consumoPK = consumoPK;
     }
 
-    public Consumo(int codItem, String codReserva) {
+    public Consumo(Integer codItem, String codReserva) {
         this.consumoPK = new ConsumoPK(codItem, codReserva);
     }
 

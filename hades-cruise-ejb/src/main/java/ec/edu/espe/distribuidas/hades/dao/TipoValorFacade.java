@@ -1,14 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.dao;
 
-import ec.edu.espe.distribuidas.hades.enums.TipoValorEnum;
 import ec.edu.espe.distribuidas.hades.enums.OrdenTipoValorEnum;
 import ec.edu.espe.distribuidas.hades.model.TipoValor;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,9 +18,10 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 @Stateless
+@LocalBean
 public class TipoValorFacade extends AbstractFacade<TipoValor> {
 
     @PersistenceContext(unitName = "ec.edu.espe.distribuidas.hades_hades-cruise-ejb_ejb_1PU")
@@ -32,15 +35,9 @@ public class TipoValorFacade extends AbstractFacade<TipoValor> {
     public TipoValorFacade() {
         super(TipoValor.class);
     }
-    
-    public List<TipoValor> findByTipoCobro(TipoValorEnum tipoCobro) {
-        Query qry = this.em.createQuery("SELECT obj FROM TipoValor obj WHERE obj.tipoCobro");
-        qry.setParameter(1, tipoCobro);
-        return qry.getResultList();
-    }
-    
+     
     public List<TipoValor> findByOrden(OrdenTipoValorEnum orden) {
-        Query qry = this.em.createQuery("SELECT obj FROM TipoValor obj WHERE obj.orden?1");
+        Query qry = this.em.createQuery("SELECT obj FROM TipoValor obj WHERE obj.orden=?1");
         qry.setParameter(1, orden);
         return qry.getResultList();
     }

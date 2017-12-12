@@ -5,11 +5,14 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
+import ec.edu.espe.distribuidas.hades.enums.EstadoReservaEnum;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -63,7 +66,7 @@ public class Reserva implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO", nullable = false, length = 3)
-    private EstadoReservaEum  estado;
+    private EstadoReservaEnum  estado;
 
     @JoinColumn(name = "COD_TIPO_ALIMENTACION", referencedColumnName = "COD_TIPO_ALIMENTACION", insertable = false, updatable = false)
     @ManyToOne
@@ -89,10 +92,6 @@ public class Reserva implements Serializable {
     private Camarote camarote;
 
     public Reserva() {
-    }
-
-    public Reserva(String codReserva) {
-        this.codReserva = codReserva;
     }
 
     public String getCodigo() {
@@ -183,11 +182,11 @@ public class Reserva implements Serializable {
         this.fechaEmision = fechaEmision;
     }
 
-    public EstadoReservaEum getEstado() {
+    public EstadoReservaEnum getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoReservaEum estado) {
+    public void setEstado(EstadoReservaEnum estado) {
         this.estado = estado;
     }
     
@@ -215,8 +214,6 @@ public class Reserva implements Serializable {
         this.camarote = camarote;
     }
     
-    
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -228,7 +225,7 @@ public class Reserva implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codReserva != null ? codReserva.hashCode() : 0);
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
@@ -239,7 +236,7 @@ public class Reserva implements Serializable {
             return false;
         }
         Reserva other = (Reserva) object;
-        if ((this.codReserva == null && other.codReserva != null) || (this.codReserva != null && !this.codReserva.equals(other.codReserva))) {
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
@@ -247,7 +244,7 @@ public class Reserva implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.distribuidas.hades.model.Reserva[ codReserva=" + codReserva + " ]";
+        return "ec.edu.espe.distribuidas.hades.model.Reserva[ codReserva=" + codigo + " ]";
     }
     
 }

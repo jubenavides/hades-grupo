@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.model;
 
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 @Entity
 @Table(name = "menu")
@@ -25,31 +27,34 @@ public class Menu implements Serializable {
 
     @Id
     @Column(name = "COD_ITEM", nullable = false)
-    private Integer codItem;
+    private Integer codigo;
+    
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
+    
     @Column(name = "DESCRIPCION", length = 300)
     private String descripcion;
+    
     @Column(name = "PRECIO", nullable = false, precision = 8, scale = 2)
     private BigDecimal precio;
+    
     @Enumerated(EnumType.STRING)
-    @Column(name = "TIPO", nullable = false, length = 5)
     private MenuEnum tipo;
 
     public Menu() {
     }
 
     public Menu(Integer codItem) {
-        this.codItem = codItem;
+        this.codigo = codItem;
     }
 
 
     public Integer getCodItem() {
-        return codItem;
+        return codigo;
     }
 
     public void setCodItem(Integer codItem) {
-        this.codItem = codItem;
+        this.codigo = codItem;
     }
 
     public String getNombre() {
@@ -88,7 +93,7 @@ public class Menu implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codItem != null ? codItem.hashCode() : 0);
+        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
@@ -99,7 +104,7 @@ public class Menu implements Serializable {
             return false;
         }
         Menu other = (Menu) object;
-        if ((this.codItem == null && other.codItem != null) || (this.codItem != null && !this.codItem.equals(other.codItem))) {
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
         return true;
@@ -107,7 +112,7 @@ public class Menu implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.distribuidas.hades.model.Menu[ codItem=" + codItem + " ]";
+        return "ec.edu.espe.distribuidas.hades.model.Menu[ codItem=" + codigo + " ]";
     }
     
 }

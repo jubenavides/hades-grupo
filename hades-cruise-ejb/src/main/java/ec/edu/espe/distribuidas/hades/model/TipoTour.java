@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.model;
 
@@ -13,20 +15,24 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 @Entity
 @Table(name = "tipo_tour")
 public class TipoTour implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "COD_TIPO_TOUR", nullable = false, length = 10)
     private String codigo;
+    
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
+    
     @Column(name = "DESCRIPCION", length = 500)
     private String descripcion;
+    
     @Column(name = "DURACION", nullable = false)
     private Integer duracion;
 

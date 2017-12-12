@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.model;
 
@@ -11,15 +13,17 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 @Embeddable
 public class CamarotePK implements Serializable {
 
     @Column(name = "COD_CRUCERO", nullable = false)
     private Integer codCrucero;
+    
     @Column(name = "COD_CAMAROTE", nullable = false)
     private Integer codCamarote;
+    
     @Column(name = "COD_TIPO_CAMAROTE", nullable = false, length = 10)
     private String codTipoCamarote;
 
