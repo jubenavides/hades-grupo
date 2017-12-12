@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Hendrix
+ * @author 
  */
 @Stateless
 public class PrecioCamaroteFacade extends AbstractFacade<PrecioCamarote> {
