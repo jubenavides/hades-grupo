@@ -36,9 +36,9 @@ public class MenuFacade extends AbstractFacade<Menu> {
         super(Menu.class);
     }
 
-    public List<Menu> findByTipo(MenuEnum tipo) {
-        Query qry = this.em.createQuery("SELECT obj FROM Menu obj WHERE obj.tipo=?1");
-        qry.setParameter(1, tipo);
+    public List<Menu> findByCodigo(Integer codigo) {
+        Query qry = this.em.createQuery("SELECT obj FROM Menu obj WHERE obj.codigo=?1");
+        qry.setParameter(1, codigo);
         return qry.getResultList();
     }
 }

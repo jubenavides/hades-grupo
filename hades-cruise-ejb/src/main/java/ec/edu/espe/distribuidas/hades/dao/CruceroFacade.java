@@ -47,4 +47,10 @@ public class CruceroFacade extends AbstractFacade<Crucero> {
         qry.setParameter(1, nombre);
         return qry.getResultList();
     }
+    
+    public List<Crucero> findByCodigo(Integer codigo) {
+        Query qry = this.em.createQuery("SELECT obj FROM Crucero obj WHERE obj.codigo=?1");
+        qry.setParameter(1, codigo);
+        return qry.getResultList();
+    }
 }

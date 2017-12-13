@@ -22,7 +22,7 @@ import javax.persistence.Table;
  * @author Hades Cruise Corp.
  */
 @Entity
-@Table(name = "menu")
+@Table(name = "MENU")
 public class Menu implements Serializable {
 
     @Id
@@ -39,6 +39,7 @@ public class Menu implements Serializable {
     private BigDecimal precio;
     
     @Enumerated(EnumType.STRING)
+    @Column(name="TIPO", length = 3, nullable = false)
     private MenuEnum tipo;
 
     public Menu() {
@@ -53,8 +54,8 @@ public class Menu implements Serializable {
         return codigo;
     }
 
-    public void setCodItem(Integer codItem) {
-        this.codigo = codItem;
+    public void setCodItem(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public String getNombre() {

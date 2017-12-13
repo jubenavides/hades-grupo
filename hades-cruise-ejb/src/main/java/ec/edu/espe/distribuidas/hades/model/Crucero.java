@@ -7,10 +7,13 @@
  */
 package ec.edu.espe.distribuidas.hades.model;
 
+import ec.edu.espe.distribuidas.hades.enums.TipoCruceroEnum;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -34,8 +37,9 @@ public class Crucero implements Serializable {
     @Column(name = "NOMBRE", nullable = false, length = 100)
     private String nombre;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "TIPO", nullable = false, length = 3)
-    private String tipo;
+    private TipoCruceroEnum tipo;
 
     @Column(name = "CAPACIDAD", precision = 7, scale = 2)
     private BigDecimal capacidad;
@@ -71,11 +75,11 @@ public class Crucero implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public TipoCruceroEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoCruceroEnum tipo) {
         this.tipo = tipo;
     }
 
