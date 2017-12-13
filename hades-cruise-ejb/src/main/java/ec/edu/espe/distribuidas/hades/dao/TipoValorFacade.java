@@ -35,10 +35,4 @@ public class TipoValorFacade extends AbstractFacade<TipoValor> {
     public TipoValorFacade() {
         super(TipoValor.class);
     }
-     
-    public List<TipoValor> findByOrden(OrdenTipoValorEnum orden) {
-        Query qry = this.em.createQuery("SELECT obj FROM TipoValor obj WHERE obj.orden=?1");
-        qry.setParameter(1, orden);
-        return qry.getResultList();
-    }
 }

@@ -26,6 +26,7 @@ import javax.persistence.Table;
 public class TipoValor implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "COD_TIPO_VALOR", nullable = false, length = 10)
     private String codigo;
