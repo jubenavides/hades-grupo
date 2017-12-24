@@ -29,7 +29,7 @@ public class MenuService {
         return this.menuFacade.findAll();
     }
     
-    public Menu obtenerPorCodigo(String codigo) {
+    public Menu obtenerPorCodigo(Integer codigo) {
         return this.menuFacade.find(codigo);
     }
     
@@ -41,7 +41,7 @@ public class MenuService {
         this.menuFacade.edit(menu);
     }
     
-    public void eliminar(String codigo) {
+    public void eliminar(Integer codigo) {
         Menu menu = this.menuFacade.find(codigo);
         this.menuFacade.remove(menu);
     }
