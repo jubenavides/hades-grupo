@@ -52,11 +52,11 @@ public class TipoValor implements Serializable {
         this.codigo = codTipoValor;
     }
 
-    public String getCodTipoValor() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodTipoValor(String codTipoValor) {
+    public void setCodigo(String codTipoValor) {
         this.codigo = codTipoValor;
     }
 
