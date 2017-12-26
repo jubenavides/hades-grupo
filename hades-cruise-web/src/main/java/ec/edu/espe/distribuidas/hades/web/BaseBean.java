@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades.web;
 
@@ -9,7 +11,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Hendrix
+ * @author Hades Cruise Corp.
  */
 public class BaseBean implements Serializable{
     
@@ -59,5 +61,4 @@ public class BaseBean implements Serializable{
     public boolean isHabilitaForm() {
         return this.enAgregar || this.enDetalles || this.enModificar;
     }
-        
 }
