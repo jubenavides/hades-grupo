@@ -83,7 +83,7 @@ public class TourPK implements Serializable {
         }
         final TourPK other = (TourPK) obj;
 
-        if (!Objects.equals(this.codTour, other.codTour)) {
+        if (!this.toString().equals(obj.toString())) {
             return false;
         }
         return true;

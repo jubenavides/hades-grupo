@@ -9,6 +9,7 @@ package ec.edu.espe.distribuidas.hades.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ public class Tour implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    protected TourPK tourPK;
+    protected TourPK pk;
 
     @Column(name = "NOMBRE", nullable = false, length = 200)
     private String nombre;
@@ -71,19 +72,19 @@ public class Tour implements Serializable {
     }
 
     public Tour(TourPK tourPK) {
-        this.tourPK = tourPK;
+        this.pk = tourPK;
     }
 
     public Tour(Integer codTour, String codTipoTour, Integer codCrucero) {
-        this.tourPK = new TourPK(codTour, codTipoTour, codCrucero);
+        this.pk = new TourPK(codTour, codTipoTour, codCrucero);
     }
 
-    public TourPK getTourPK() {
-        return tourPK;
+    public TourPK getPk() {
+        return pk;
     }
 
-    public void setTourPK(TourPK tourPK) {
-        this.tourPK = tourPK;
+    public void setPk(TourPK pk) {
+        this.pk = pk;
     }
 
     public String getNombre() {
@@ -105,6 +106,7 @@ public class Tour implements Serializable {
     public Date getFechaInicio() {
         return fechaInicio;
     }
+    
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
@@ -169,7 +171,7 @@ public class Tour implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (tourPK != null ? tourPK.hashCode() : 0);
+        hash += (pk != null ? pk.hashCode() : 0);
         return hash;
     }
 
@@ -193,6 +195,6 @@ public class Tour implements Serializable {
 
     @Override
     public String toString() {
-        return "Tour{" + "tourPK=" + tourPK + ", nombre=" + nombre + ", duracion=" + duracion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", puertoEmbarque=" + puertoEmbarque + ", puertoDesembarque=" + puertoDesembarque + ", precioBase=" + precioBase + ", porcentajeMenu=" + porcentajeMenu + ", tipoTour=" + tipoTour + ", crucero=" + crucero + '}';
+        return "Tour{" + "tourPK=" + pk + ", nombre=" + nombre + ", duracion=" + duracion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", puertoEmbarque=" + puertoEmbarque + ", puertoDesembarque=" + puertoDesembarque + ", precioBase=" + precioBase + ", porcentajeMenu=" + porcentajeMenu + ", tipoTour=" + tipoTour + ", crucero=" + crucero + '}';
     }
 }

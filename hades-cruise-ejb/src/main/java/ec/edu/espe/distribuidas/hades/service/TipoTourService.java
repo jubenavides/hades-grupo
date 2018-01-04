@@ -45,4 +45,6 @@ public class TipoTourService {
         TipoTour tipoTour = this.tipoTourFacade.find(codigo);
         this.tipoTourFacade.remove(tipoTour);
     }
+
+    
 }

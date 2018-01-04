@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel id="mainPnl" header="Adminsitracion de Tours" style="width: 80%; margin: auto;">
+                <p:panel id="buscPnl" header="Busqueda">
+                    <p:outputLabel for="filtroCmb" value="Buscar:" />
+                    <p:selectOneMenu id="filtroCmb" value="#{tourAdminBean.filtro}" required="true"  valueChangeListener="#{tourAdminBean.cambiarFiltro()}" >
+                        <p:ajax update="@form"/>
+                        <f:selectItem itemLabel="Tipo Tour" itemValue="TIP" />
+                        <f:selectItem itemLabel="Fechas" itemValue="FEC" />
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="tiposTourCmb" value="#{tourAdminBean.tipoTourBusqueda}" rendered="#{tourAdminBean.enBusquedaPorTipo}">
+                        <f:selectItems var="tipoTour" value="#{tourAdminBean.tiposTour}" itemLabel="#{tipoTour.nombre}" itemValue="#{tipoTour.codigo}" />
+                    </p:selectOneMenu>
+                    <p:calendar id="fechaInicioCal" value="#{tourAdminBean.fechaInicioBusqueda}" showOn="button" pattern="MM/dd/yyyy" rendered="#{not tourAdminBean.enBusquedaPorTipo}" />
+                    <p:calendar id="fechaFinCal" value="#{tourAdminBean.fechaFinBusqueda}" showOn="button" pattern="MM/dd/yyyy" rendered="#{not tourAdminBean.enBusquedaPorTipo}" />
+                    <p:commandButton id="buscarCmd" value="Buscar" actionListener="#{tourAdminBean.buscar()}" update="@form" />
+                </p:panel>
+                
+                <p:dataTable id="toursTbl" var="tour" value="#{tourAdminBean.tours}" 
+                             selectionMode="single" selection="#{tourAdminBean.tourSel}" rowKey="#{tour.pk}">
+                    <p:ajax event="rowSelect" update="toursTbl" />
+                    <p:ajax event="rowUnselect" update="toursTbl" />
+                    <p:column headerText="Tipo" sortBy="#{tour.tipoTour.nombre}">
+                        <h:outputText value="#{tour.tipoTour.nombre}" />
+                    </p:column>
+                    <p:column headerText="Tipo" sortBy="#{tour.crucero.nombre}">
+                        <h:outputText value="#{tour.crucero.nombre} Cap. #{tour.crucero.capacidad}" />
+                    </p:column>
+                    <p:column headerText="F.Inicio" sortBy="#{tour.fechaInicio}">
+                        <h:outputText value="#{tour.fechaInicio}" >
+                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="F.Fin" sortBy="#{tour.fechaFin}">
+                        <h:outputText value="#{tour.fechaFin}" >
+                            <f:convertDateTime pattern="yyyy-MM-dd"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Precio Base" sortBy="#{tour.precioBase}">
+                        <h:outputText value="#{tour.precioBase}" >
+                            <f:convertNumber minFractionDigits="2" maxFractionDigits="2" currencySymbol="$"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
