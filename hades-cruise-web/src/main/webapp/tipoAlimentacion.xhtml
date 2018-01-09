@@ -20,21 +20,23 @@
                         <h:outputText value="#{tipoAlimentacion.descripcion}" />
                     </p:column>
                 </p:dataTable>
-                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                
                 <p:commandButton value="Agregar" actionListener="#{tipoAlimentacionBean.agregar()}" update="@form"/>
                 <p:commandButton id="modBtn" value="Modificar" actionListener="#{tipoAlimentacionBean.modificar()}" update="@form" disabled="#{tipoAlimentacionBean.tipoAlimentacionSel eq null}"/>
                 <p:commandButton value="Eliminar" actionListener="#{tipoAlimentacionBean.eliminar()}" update="@form" disabled="#{tipoAlimentacionBean.tipoAlimentacionSel eq null}" >
                     <p:confirm header="Confirmaci&#243;n" message="Desea eliminar el tipo de alimentacion: #{tipoAlimentacionBean.tipoAlimentacionSel.descripcion}}" icon="ui-icon-alert" />
                 </p:commandButton>
-                <p:panel header="#{tipoAlimentacionBean.titulo} Tipo Alimentaci&#243;n" visible="#{tipoAlimentacionBean.habilitaForm}">
-                    <p:panelGrid columns="2">
+                <p:panel header="#{tipoAlimentacionBean.titulo} Tipo Alimentaci&#243;n" rendered="#{tipoAlimentacionBean.habilitaForm}">
+                    <p:panelGrid columns="3">
                         <p:outputLabel for="codigo" value="Codigo" />
-                        <p:inputText id="codigo" value="#{tipoAlimentacionBean.tipoAlimentacion.codigo}" disabled="#{tipoAlimentacionBean.enModificar}" />
+                        <p:inputText id="codigo" value="#{tipoAlimentacionBean.tipoAlimentacion.codigo}" disabled="#{tipoAlimentacionBean.enModificar}" required="true" requiredMessage="Debe ingresar el codigo"/>
+                        <p:message for="codigo" />
                         <p:outputLabel for="descripcion" value="Descripci&#243;n" />
-                        <p:inputText id="descripcion" value="#{tipoAlimentacionBean.tipoAlimentacion.descripcion}"  />
+                        <p:inputText id="descripcion" value="#{tipoAlimentacionBean.tipoAlimentacion.descripcion}"  required="true" requiredMessage="Debe ingresara la descripcion"/>
+                        <p:message for="descripcion" />
                     </p:panelGrid>
                     <p:commandButton value="Aceptar" actionListener="#{tipoAlimentacionBean.guardar}" update="@form" />
-                    <p:commandButton value="Cancelar" actionListener="#{tipoAlimentacionBean.cancelar}" update="@form" />
+                    <p:commandButton value="Cancelar" actionListener="#{tipoAlimentacionBean.cancelar}" update="@form" immediate="true"/>
 
                 </p:panel>
 
