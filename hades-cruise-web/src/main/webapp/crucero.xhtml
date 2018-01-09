@@ -32,7 +32,7 @@
                 <p:commandButton value="Eliminar" actionListener="#{cruceroBean.eliminar()}" update="@form" disabled="#{cruceroBean.cruceroSel eq null}">
                     <p:confirm header="Confirmaci&#243;n" message="Desea eliminar el crucero de nombre: #{cruceroBean.cruceroSel.nombre}" icon="ui-icon-alert" />
                 </p:commandButton>
-                <p:panel header="#{cruceroBean.titulo} &#237;tem al men&#250;" visible="#{cruceroBean.habilitaForm}">
+                <p:panel header="#{cruceroBean.titulo} Crucero" visible="#{cruceroBean.habilitaForm}">
                     <p:panelGrid columns="2">
                         <p:outputLabel for="registro" value="Registro" />
                         <p:inputText id="registro" value="#{cruceroBean.crucero.registro}"  />
@@ -40,7 +40,7 @@
                         <p:inputTextarea id="nombre" value="#{cruceroBean.crucero.nombre}" rows="2" cols="20" />
                         <p:outputLabel for="tipo" value="Tipo Crucero" />
                         <h:selectOneMenu value="#{cruceroBean.crucero.tipo}" style="background-color: black" >
-                            <f:selectItems id="tipo" value="#{cruceroBean.tiposCrucero}" var="tipoMenu" itemValue="#{tipoCrucero}" itemLabel="#{tipoCrucero.texto}"  />                          
+                            <f:selectItems id="tipo" value="#{cruceroBean.tiposCrucero}" var="tipoCrucero" itemValue="#{tipoCrucero}" itemLabel="#{tipoCrucero.texto}"  />                          
                         </h:selectOneMenu>
                         <p:outputLabel for="capacidad" value="Capacidad" />
                         <p:inputText id="capacidad" value="#{cruceroBean.crucero.capacidad}"  />
