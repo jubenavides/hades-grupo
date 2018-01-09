@@ -20,20 +20,8 @@
             </div>
             <div id="content">
                 <h:form>
-                    <p:menubar>
-                        <p:submenu label="Catalogos" icon="ui-icon-document">
-                            <p:menuitem value="Tipo Alimentacion" action="tipoAlimentacion" />
-                            <p:menuitem value="Tipo Camarote" action="tipoCamarote" />
-                            <p:menuitem value="Menu Bar" url="menu" />
-                        </p:submenu>
-                        <p:submenu label="Cruceros y Tours" >
-                            <p:menuitem value="Tour" action="tour" />
-                        </p:submenu>
-                        <p:menuitem value="#{usuarioSesionBean.nombre}" url="#"/>
-                        <p:menuitem value="Salir" icon="ui-icon-extlink" action="#{indexBean.logout()}" />
-                    </p:menubar>
                     <ui:insert name="contenido">
- 
+
                     </ui:insert>
                     <p>&nbsp;</p>
                 </h:form>
