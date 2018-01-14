@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel id="mainPnl" header="Agregar Cliente" rendered="true" style="width: 50%; margin: auto;">            
+                    <p:panelGrid columns="3">
+                        <p:outputLabel for="identificacion" value="Identificaci&#243;n" />
+                        <p:inputText id="identificacion" value="#{clienteBean.cliente.clientePK.identificacion}" disabled="#{tipoAlimentacionBean.enModificar}" required="true" requiredMessage="Debe ingresar el codigo"/>
+                        <p:message for="identificacion" />
+                        <p:outputLabel for="tipoIdentificacion" value="Tipo Identificaci&#243;n" />
+                        <p:inputText id="tipoIdentificacion" value="#{clienteBean.cliente.clientePK.tipoIdentificacion}"  required="true" requiredMessage="Debe ingresara la descripcion"/>
+                        <p:message for="tipoIdentificacion" />
+                        <p:outputLabel for="nombre" value="Nombre" />
+                        <p:inputText id="nombre" value="#{clienteBean.cliente.nombre}"  required="true" requiredMessage="Debe ingresara la descripcion"/>
+                        <p:message for="nombre" />
+                        <p:outputLabel for="apellido" value="Apellido" />
+                        <p:inputText id="apellido" value="#{clienteBean.cliente.apellido}"  required="true" requiredMessage="Debe ingresara la descripcion"/>
+                        <p:message for="apellido" />
+                        <p:outputLabel for="direccion" value="Direcci&#243;n" />
+                        <p:inputText id="direccion" value="#{clienteBean.cliente.direccion}"  required="true" requiredMessage="Debe ingresara la descripcion"/>
+                        <p:message for="direccion" />
+                        <p:outputLabel for="pais" value="Pa&#237;s" />
+                        <p:inputText id="pais" value="#{clienteBean.cliente.pais}"  required="true" requiredMessage="Debe ingresara la descripcion"/>
+                        <p:message for="pais" />
+                        <p:outputLabel for="telefono" value="Tel&#233;fono" />
+                        <p:inputText id="telefono" value="#{clienteBean.cliente.telefono}"  required="true" requiredMessage="Debe ingresara la descripcion"/>
+                        <p:message for="telefono" />
+                        <p:outputLabel for="correo" value="Correo" />
+                        <p:inputText id="correo" value="#{clienteBean.cliente.correoElectronico}"  required="true" requiredMessage="Debe ingresara la descripcion"/>
+                        <p:message for="correo" />
+                    </p:panelGrid>
+                    <p:commandButton value="Aceptar" actionListener="#{clienteBean.guardar}" update="@form" />
+                    <p:commandButton value="Cancelar" actionListener="#{clienteBean.cancelar}" update="@form" immediate="true"/>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
