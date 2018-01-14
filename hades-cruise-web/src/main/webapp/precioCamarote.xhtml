@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel id="mainPnl" header="Precio Camarote" style="width: 80%; margin: auto;">
+                <p:panel id="buscPnl" header="Busqueda">
+                    <p:outputLabel for="filtroCmb" value="Buscar:" />
+                    <p:panelGrid columns="3">
+                        <p:selectOneMenu id="filtroCmb" value="#{precioCamaroteBean.filtro}" required="true"  valueChangeListener="#{precioCamaroteBean.cambiarFiltro()}" >
+                            <p:ajax update="@form"/>
+                            <f:selectItem itemLabel="Tipo Camarote" itemValue="TIP" />
+                        </p:selectOneMenu>
+                        <p:selectOneMenu id="tiposCamaroteCmb" value="#{precioCamaroteBean.tipoCamaroteBusqueda}" rendered="#{precioCamaroteBean.enBusquedaPorTipo}">
+                            <f:selectItems var="tipoCamarote" value="#{precioCamaroteBean.tiposCamarote}" itemLabel="#{tipoCamarote.nombre}" itemValue="#{tipoCamarote.codigo}" />
+                        </p:selectOneMenu>
+                        <p:commandButton id="buscarCmd" value="Buscar" actionListener="#{precioCamaroteBean.buscar()}" update="@form" />
+                    </p:panelGrid>
+                </p:panel>    
+                <p:dataTable id="preciosCamaroteTbl" var="precioCamarote" value="#{precioCamaroteBean.preciosCamarote}" 
+                             selectionMode="single" selection="#{precioCamaroteBean.precioCamaroteSel}" rowKey="#{precioCamarote.codTipoCamarote}">
+                    <p:ajax event="rowSelect" update="preciosCamaroteTbl" />
+                    <p:ajax event="rowUnselect" update="preciosCamaroteTbl" />
+                    <p:column headerText="Tipo Camarote" sortBy="#{precioCamarote.tipoCamarote.nombre}">
+                        <h:outputText value="#{precioCamarote.tipoCamarote.nombre}" />
+                    </p:column>
+                    <p:column headerText="Crucero" sortBy="#{precioCamarote.tour.crucero.nombre}">
+                        <h:outputText value="#{precioCamarote.tour.crucero.nombre} Cap.#{precioCamarote.tour.crucero.capacidad}" />
+                    </p:column>
+                    <p:column headerText="Tipo Tour" sortBy="#{precioCamarote.tour.tipoTour.nombre}">
+                        <h:outputText value="#{precioCamarote.tour.tipoTour.nombre}" />
+                    </p:column>
+                    <p:column headerText="Precio Adicional" sortBy="#{precioCamarote.porcentajeAdicional}">
+                        <h:outputText value="Precio Base. #{precioCamarote.tour.precioBase} + #{precioCamarote.porcentajeAdicional*precioCamarote.tour.precioBase} &#37;Adicional = #{precioCamarote.tour.precioBase+precioCamarote.porcentajeAdicional*precioCamarote.tour.precioBase}" />
+                    </p:column>
+                    <p:column headerText="Precio por Persona" sortBy="#{precioCamarote.porecentajePersona}">
+                        <h:outputText value="Precio Base. #{precioCamarote.tour.precioBase} + #{precioCamarote.porecentajePersona*precioCamarote.tour.precioBase} &#37;Persona = #{precioCamarote.tour.precioBase+precioCamarote.porecentajePersona*precioCamarote.tour.precioBase}" />
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
