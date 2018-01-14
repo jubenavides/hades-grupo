@@ -1,6 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Hades Cruise
+ * Aplicaciones Distribuidas
+ * NRC: 2434 
+ * Tutor: HENRY RAMIRO CORAL CORAL 
+ * 2017 (c) Hades Cruise Corp.
  */
 package ec.edu.espe.distribuidas.hades;
 

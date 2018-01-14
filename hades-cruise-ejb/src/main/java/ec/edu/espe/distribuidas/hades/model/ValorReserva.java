@@ -27,7 +27,7 @@ public class ValorReserva implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    protected ValorReservaPK valorReservaPK;
+    protected ValorReservaPK pk;
 
     @Column(name = "VALOR", nullable = false, precision = 8, scale = 2)
     private BigDecimal valor;
@@ -44,15 +44,15 @@ public class ValorReserva implements Serializable {
     }
 
     public ValorReserva(ValorReservaPK valorReservaPK) {
-        this.valorReservaPK = valorReservaPK;
+        this.pk = valorReservaPK;
     }
 
-    public ValorReservaPK getValorReservaPK() {
-        return valorReservaPK;
+    public ValorReservaPK getPk() {
+        return pk;
     }
 
-    public void setValorReservaPK(ValorReservaPK valorReservaPK) {
-        this.valorReservaPK = valorReservaPK;
+    public void setPk(ValorReservaPK pk) {
+        this.pk = pk;
     }
 
     public BigDecimal getValor() {
@@ -82,7 +82,7 @@ public class ValorReserva implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (valorReservaPK != null ? valorReservaPK.hashCode() : 0);
+        hash += (pk != null ? pk.hashCode() : 0);
         return hash;
     }
 
@@ -93,7 +93,7 @@ public class ValorReserva implements Serializable {
             return false;
         }
         ValorReserva other = (ValorReserva) object;
-        if ((this.valorReservaPK == null && other.valorReservaPK != null) || (this.valorReservaPK != null && !this.valorReservaPK.equals(other.valorReservaPK))) {
+        if ((this.pk == null && other.pk != null) || (this.pk != null && !this.pk.equals(other.pk))) {
             return false;
         }
         return true;
@@ -101,6 +101,6 @@ public class ValorReserva implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.distribuidas.hades.model.ValorReserva[ valorReservaPK=" + valorReservaPK + " ]";
+        return "ec.edu.espe.distribuidas.hades.model.ValorReserva[ valorReservaPK=" + pk + " ]";
     }
 }

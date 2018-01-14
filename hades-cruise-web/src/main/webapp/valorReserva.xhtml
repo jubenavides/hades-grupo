@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel id="mainPnl" header="Valor de Reservas" style="width: 80%; margin: auto;">
+                
+                <p:panel id="buscPnl" header="Busqueda">
+                    <p:panelGrid columns="4" style="margin-top:10px">                   
+                        <p:outputLabel value="Codigo de reserva" />
+                        <p:inputText id="usuario" value="#{valorReservaBean.codigoReserva}" required="true" 
+                                     maxlength="15" requiredMessage="Debe ingresar el codigo de reserva" />
+                        <p:outputLabel for="valorReservaCmb" value="Tipo de Valor Reserva:" />
+                        <p:selectOneMenu id="valorReservaCmb" value="#{valorReservaBean.tipoValorBusqueda}">
+                            <f:selectItems var="tipoValor" value="#{valorReservaBean.tiposValor}" itemLabel="#{tipoValor.nombre}" itemValue="#{tipoValor.codigo}" />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:spacer height="10px"/>
+                    <p:commandButton id="buscarCmd" value="Buscar"  actionListener="#{valorReservaBean.buscar()}" update="@form" />
+                </p:panel>
+                
+               <p:panel id="listValorReservaPnl" header="Lista de Valor Reserva">
+                   <p:dataTable id="valorReservaTbl" var="valorReserva" value="#{valorReservaBean.valorReservaList}" 
+                                selectionMode="single" selection="#{valorReservaBean.valorReservaSel}" rowKey="#{valorReserva.pk}">
+                        <p:ajax event="rowSelect" update="valorReservaTbl" />
+                        <p:ajax event="rowUnselect" update="valorReservaTbl" />
+                        <p:column headerText="Codigo Reserva" sortBy="#{valorReserva.pk.codReserva}">
+                            <h:outputText value="#{valorReserva.pk.codReserva}" />
+                        </p:column>
+                        <p:column headerText="Valor" sortBy="#{valorReserva.valor}">
+                            <h:outputText value="#{valorReserva.valor}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
