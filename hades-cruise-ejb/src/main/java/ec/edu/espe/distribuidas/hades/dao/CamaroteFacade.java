@@ -36,7 +36,7 @@ public class CamaroteFacade extends AbstractFacade<Camarote> {
     }
     
     public List<Camarote> findByCruceroTipo(Integer codCrucero, String codTipoCamarote) {
-        Query qry = this.em.createQuery("SELECT obj FROM Camarote obj WHERE obj.camarotePK.codCrucero=?1 AND obj.camarotePK.codTipoCamarote=?2");
+        Query qry = this.em.createQuery("SELECT obj FROM Camarote obj WHERE obj.pk.codCrucero=?1 AND obj.pk.codTipoCamarote=?2");
         qry.setParameter(1, codCrucero);
         qry.setParameter(2, codTipoCamarote);
         return qry.getResultList();

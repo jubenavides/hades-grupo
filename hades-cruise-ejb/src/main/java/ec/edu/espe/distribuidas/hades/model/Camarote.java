@@ -26,7 +26,7 @@ public class Camarote implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @EmbeddedId
-    protected CamarotePK camarotePK;
+    protected CamarotePK pk;
     
     @Column(name = "NUMERO", nullable = false)
     private short numero;
@@ -49,19 +49,19 @@ public class Camarote implements Serializable {
     }
 
     public Camarote(CamarotePK camarotePK) {
-        this.camarotePK = camarotePK;
+        this.pk = camarotePK;
     }
 
     public Camarote(Integer codCrucero, Integer codCamarote, String codTipoCamarote) {
-        this.camarotePK = new CamarotePK(codCrucero, codCamarote, codTipoCamarote);
+        this.pk = new CamarotePK(codCrucero, codCamarote, codTipoCamarote);
     }
 
-    public CamarotePK getCamarotePK() {
-        return camarotePK;
+    public CamarotePK getPk() {
+        return pk;
     }
 
-    public void setCamarotePK(CamarotePK camarotePK) {
-        this.camarotePK = camarotePK;
+    public void setPk(CamarotePK pk) {
+        this.pk = pk;
     }
 
     public short getNumero() {
@@ -107,18 +107,18 @@ public class Camarote implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (camarotePK != null ? camarotePK.hashCode() : 0);
+        hash += (pk != null ? pk.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        
         if (!(object instanceof Camarote)) {
             return false;
         }
         Camarote other = (Camarote) object;
-        if ((this.camarotePK == null && other.camarotePK != null) || (this.camarotePK != null && !this.camarotePK.equals(other.camarotePK))) {
+        if ((this.pk == null && other.pk != null) || (this.pk != null && !this.pk.equals(other.pk))) {
             return false;
         }
         return true;
@@ -126,6 +126,6 @@ public class Camarote implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.distribuidas.hades.model.Camarote[ camarotePK=" + camarotePK + " ]";
+        return "ec.edu.espe.distribuidas.hades.model.Camarote[ camarotePK=" + pk + " ]";
     }   
 }
