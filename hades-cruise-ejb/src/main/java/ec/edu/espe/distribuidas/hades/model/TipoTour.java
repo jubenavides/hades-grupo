@@ -66,7 +66,7 @@ public class TipoTour implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    
     public Integer getDuracion() {
         return duracion;
     }

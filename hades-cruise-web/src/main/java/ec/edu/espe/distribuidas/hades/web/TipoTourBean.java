@@ -36,8 +36,8 @@ public class TipoTourBean extends BaseBean implements Serializable{
     @PostConstruct
     public void init()
     {
+       this.tipoTour = new TipoTour();
         this.tiposTour = this.tipoTourService.obtenerTodos();
-        this.tipoTour = new TipoTour();
     }
     
     public List<TipoTour> getTiposTour(){

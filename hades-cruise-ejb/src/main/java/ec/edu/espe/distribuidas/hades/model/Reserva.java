@@ -52,7 +52,7 @@ public class Reserva implements Serializable {
     private Integer codCamarote;
 
     @Column(name = "COD_TIPO_ALIMENTACION", nullable = false)
-    private Integer codTipoAlimentacion;
+    private String codTipoAlimentacion;
 
     @Column(name = "COD_TIPO_CAMAROTE", nullable = false, length = 10)
     private String codTipoCamarote;
@@ -143,11 +143,11 @@ public class Reserva implements Serializable {
         this.codTipoTour = codTipoTour;
     }
 
-    public int getCodCrucero() {
+    public Integer getCodCrucero() {
         return codCrucero;
     }
 
-    public void setCodCrucero(int codCrucero) {
+    public void setCodCrucero(Integer codCrucero) {
         this.codCrucero = codCrucero;
     }
 
@@ -191,11 +191,11 @@ public class Reserva implements Serializable {
         this.estado = estado;
     }
 
-    public Integer getCodTipoAlimentacion() {
+    public String getCodTipoAlimentacion() {
         return codTipoAlimentacion;
     }
 
-    public void setCodTipoAlimentacion(Integer codTipoAlimentacion) {
+    public void setCodTipoAlimentacion(String codTipoAlimentacion) {
         this.codTipoAlimentacion = codTipoAlimentacion;
     }
 

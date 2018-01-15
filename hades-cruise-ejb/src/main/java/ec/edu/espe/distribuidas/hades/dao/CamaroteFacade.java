@@ -41,4 +41,18 @@ public class CamaroteFacade extends AbstractFacade<Camarote> {
         qry.setParameter(2, codTipoCamarote);
         return qry.getResultList();
     }
+    
+    public List<Camarote> findByCrucero(Integer codCrucero) {
+        Query qry = this.em.createQuery("SELECT obj FROM Camarote obj WHERE obj.pk.codCrucero=?1");
+        qry.setParameter(1, codCrucero);
+        return qry.getResultList();
+    }
+    
+    public Camarote findCodTipCamarote(Integer codCrucero, Integer numCamarote){
+        Query qry=this.em.createQuery("SELECT obj FROM Camarote obj WHERE obj.pk.codCrucero=?1 and obj.numero=?2");
+        qry.setParameter(1, codCrucero);
+        qry.setParameter(2, numCamarote);
+        
+        return  (Camarote) qry.getSingleResult();  
+    }     
 }

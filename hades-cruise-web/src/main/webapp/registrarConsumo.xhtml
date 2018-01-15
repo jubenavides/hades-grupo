@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel id="mainPnl" header="Registro de consumo" style="width: 80%; margin: auto;">
+                <p:dataTable id="toursTbl" var="tour" value="#{tourAdminBean.tours}" 
+                             selectionMode="single" selection="#{tourAdminBean.tourSel}" rowKey="#{tour.pk}">
+                    <p:ajax event="rowSelect" update="toursTbl" />
+                    <p:ajax event="rowUnselect" update="toursTbl" />
+                    <p:column headerText="Nombre" sortBy="#{tour.tipoTour.nombre}">
+                        <h:outputText value="#{tour.tipoTour.nombre}" />
+                    </p:column>
+                    <p:column headerText="Tipo" sortBy="#{tour.crucero.nombre}">
+                        <h:outputText value="#{tour.crucero.nombre} Cap. #{tour.crucero.capacidad}" />
+                    </p:column>
+                 <p:commandButton value="Agregar" actionListener="#{tipoValorBean.agregar()}" update="@form"/>                      
+                </p:dataTable>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>

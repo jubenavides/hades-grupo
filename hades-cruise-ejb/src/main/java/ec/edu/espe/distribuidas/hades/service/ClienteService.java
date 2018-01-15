@@ -31,7 +31,7 @@ public class ClienteService {
     }
     
     public Cliente obtenerPorIdentificacion(String identificacion) {
-        return this.clienteFacade.find(identificacion);
+        return this.clienteFacade.findByID(identificacion);
     }
     
     public void crear(Cliente cliente) {

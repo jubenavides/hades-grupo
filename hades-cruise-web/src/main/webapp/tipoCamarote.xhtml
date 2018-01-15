@@ -13,12 +13,12 @@ and open the template in the editor.
     <ui:composition template="/templates/plantilla.xhtml">
         <ui:define name="contenido">
             <p:panel id="mainPnl" header="Tipo Camarote" style="width: 50%; margin: auto;">
-                <p:dataTable var="tipoCamaarote" value="#{tipoCamaroteBean.tiposCamarote}"
+                <p:dataTable var="tipoCamarote" value="#{tipoCamaroteBean.tiposCamarote}"
                              selectionMode="single" selection="#{tipoCamaroteBean.tipoCamaroteSel}" rowKey="#{tipoCamarote.codigo}">
                     <p:ajax event="rowSelect" update="@form" />
                     <p:ajax event="rowUnselect" update="@form" />
                     <p:column headerText="Codigo">
-                        <h:outputText value="#{tipoamarote.codigo}" />
+                        <h:outputText value="#{tipoCamarote.codigo}" />
                     </p:column>
                     <p:column headerText="Nombre">
                         <h:outputText value="#{tipoCamarote.nombre}" />

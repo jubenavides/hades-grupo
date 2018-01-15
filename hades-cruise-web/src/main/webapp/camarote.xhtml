@@ -10,7 +10,7 @@
         <ui:define name="contenido">
             <p:panel id="mainPnl" header="Administracion de Camarote" style="width: 80%; margin: auto;">
                 <p:panel id="buscPnl" header="Busqueda">
-                    <p:panelGrid columns="4" style="margin-top:10px">
+                    <p:panelGrid columns="2" style="margin-top:10px">
                         <p:outputLabel for="cruceroCmb" value="Crucero:" />
                         <p:selectOneMenu id="cruceroCmb" value="#{camaroteAdminBean.cruceroBusqueda}" rendered="true">
                             <f:selectItems var="crucero" value="#{camaroteAdminBean.cruceros}" itemLabel="#{crucero.nombre}" itemValue="#{crucero.codigo}" />

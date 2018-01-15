@@ -7,6 +7,7 @@
  */
 package ec.edu.espe.distribuidas.hades.dao;
 
+import ec.edu.espe.distribuidas.hades.model.Camarote;
 import ec.edu.espe.distribuidas.hades.model.Tour;
 import java.util.Date;
 import java.util.List;
@@ -54,4 +55,10 @@ public class TourFacade extends AbstractFacade<Tour>{
         qry.setParameter(2, fechaFin);
         return qry.getResultList();
     }
+    
+     public Tour findTourByCodTour(Integer codTour){
+        Query qry=this.em.createQuery("SELECT obj FROM Tour obj WHERE obj.pk.codTour=?1");
+        qry.setParameter(1, codTour);      
+        return  (Tour) qry.getSingleResult();  
+    }     
 }

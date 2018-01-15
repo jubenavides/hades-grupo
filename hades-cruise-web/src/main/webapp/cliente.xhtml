@@ -8,7 +8,26 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition template="/templates/plantilla.xhtml">
         <ui:define name="contenido">
-            <p:panel id="mainPnl" header="Agregar Cliente" rendered="true" style="width: 50%; margin: auto;">            
+            <p:panel id="mainPnl" header="Agregar Cliente" style="width: 50%; margin: auto;">
+                <p:dataTable var="cliente" value="#{clienteBean.clientes}"
+                             selectionMode="single" selection="#{clienteBean.clienteSel}" rowKey="#{cliente.clientePK}">
+                    <p:ajax event="rowSelect" update="@form" />
+                    <p:ajax event="rowUnselect" update="@form" />
+                    <p:column headerText="Identificacion">
+                        <h:outputText value="#{cliente.clientePK.identificacion}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{cliente.nombre}" />
+                    </p:column>
+                    <p:column headerText="Apellido">
+                        <h:outputText value="#{cliente.apellido}" />
+                    </p:column>
+                    <p:column headerText="Direccion">
+                        <h:outputText value="#{cliente.direccion}" />
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Agregar" actionListener="#{clienteBean.agregar()}" update="@form"/>
+                <p:panel header="Registrar cliente" rendered="#{clienteBean.habilitaForm}">
                     <p:panelGrid columns="3">
                         <p:outputLabel for="identificacion" value="Identificaci&#243;n" />
                         <p:inputText id="identificacion" value="#{clienteBean.cliente.clientePK.identificacion}" disabled="#{tipoAlimentacionBean.enModificar}" required="true" requiredMessage="Debe ingresar el codigo"/>
@@ -37,6 +56,7 @@
                     </p:panelGrid>
                     <p:commandButton value="Aceptar" actionListener="#{clienteBean.guardar}" update="@form" />
                     <p:commandButton value="Cancelar" actionListener="#{clienteBean.cancelar}" update="@form" immediate="true"/>
+                </p:panel>
             </p:panel>
         </ui:define>
     </ui:composition>

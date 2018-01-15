@@ -24,6 +24,10 @@ public class TourService {
     @EJB
     private TourFacade tourFacade;
 
+    public List<Tour> obtenerTodos() {
+        return this.tourFacade.findAll();
+    }
+    
     public List<Tour> buscarPorTipo(String tipoTourBusqueda) {
         return this.tourFacade.findByTipo(tipoTourBusqueda);
     }
@@ -32,4 +36,8 @@ public class TourService {
         return this.tourFacade.findByFechas(fechaInicioBusqueda, fechaFinBusqueda);
     }
     
+    public Tour obtenerTourPorCodigo(Integer codTour) {
+        return this.tourFacade.findTourByCodTour(codTour);
+    }
+ 
 }

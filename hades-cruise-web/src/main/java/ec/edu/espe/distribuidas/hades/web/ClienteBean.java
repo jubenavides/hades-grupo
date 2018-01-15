@@ -107,6 +107,9 @@ public class ClienteBean extends BaseBean implements Serializable {
     public void setClienteSel(Cliente clienteSel) {
         this.clienteSel = clienteSel;
     }
-    
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
     
 }

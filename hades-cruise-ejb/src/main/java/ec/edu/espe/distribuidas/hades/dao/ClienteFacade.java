@@ -12,6 +12,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -32,4 +33,10 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
     public ClienteFacade() {
         super(Cliente.class);
     }   
+    
+    public Cliente findByID(String identificacion){
+        Query qry=this.em.createQuery("SELECT obj FROM Cliente obj WHERE obj.clientePK.identificacion=?1");
+        qry.setParameter(1, identificacion);
+        return  (Cliente) qry.getSingleResult();  
+    } 
 }

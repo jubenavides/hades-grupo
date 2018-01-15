@@ -8,10 +8,13 @@
 package ec.edu.espe.distribuidas.hades.dao;
 
 import ec.edu.espe.distribuidas.hades.model.TipoCamarote;
+import ec.edu.espe.distribuidas.hades.model.Tour;
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -32,4 +35,5 @@ public class TipoCamaroteFacade extends AbstractFacade<TipoCamarote> {
     public TipoCamaroteFacade() {
         super(TipoCamarote.class);
     }
+
 }

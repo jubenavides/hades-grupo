@@ -43,9 +43,9 @@ and open the template in the editor.
                         <p:outputLabel for="nombre" value="Nombre" />
                         <p:inputText id="nombre" value="#{tipoTourBean.tipoTour.nombre}"  />
                         <p:outputLabel for="descripcion" value="Descripcion" />
-                        <p:inputText id="nombre" value="#{tipoTourBean.tipoTour.descripcion}"  />
+                        <p:inputText id="descripcion" value="#{tipoTourBean.tipoTour.descripcion}"  />
                         <p:outputLabel for="duracion" value="Duracion" />
-                        <p:inputText id="nombre" value="#{tipoTourBean.tipoTour.duracion}"  />
+                        <p:inputText id="duracion" value="#{tipoTourBean.tipoTour.duracion}"  />
                     </p:panelGrid>
                     <p:commandButton value="Aceptar" actionListener="#{tipoTourBean.guardar}" update="@form" />
                     <p:commandButton value="Cancelar" actionListener="#{tipoTourBean.cancelar}" update="@form" />

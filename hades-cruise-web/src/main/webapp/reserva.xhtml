@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel id="mainPnl" header="Reserva" style="width: 50%; margin: auto;">   
+                <p:commandButton value="Agregar" actionListener="#{reservaBean.agregar()}" update="@form"/>
+                <p:panel header="Registrar Reserva" rendered="#{reservaBean.habilitaForm}">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel for="cliente" value="Cliente" />
+                        <p:selectOneMenu value="#{reservaBean.cliente.clientePK.identificacion}">
+                            <f:selectItems id="cliente" value="#{clienteBean.clientes}" var="cliente" itemValue="#{cliente.clientePK.identificacion}" itemLabel="#{cliente.nombre} #{cliente.apellido} #{cliente.clientePK.identificacion}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="tour" value="Tour" />
+                        <p:selectOneMenu value="#{reservaBean.tour.pk.codTour}">
+                            <f:selectItems id="tour" value="#{reservaBean.listadoTours}" var="tour" itemValue="#{tour.pk.codTour}" itemLabel="#{tour.nombre}"/>                          
+                            <p:ajax update="camarote" listener="#{reservaBean.actualizarCamarotes()}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="camarote" value="Camarote" />
+                        <p:selectOneMenu id="camarote" value="#{reservaBean.camarote.numero}">
+                            <f:selectItems value="#{reservaBean.listadoCamarotes}" var="camarote" itemValue="#{camarote.numero}" itemLabel="#{camarote.numero}"/>
+                            <p:ajax update="tipoCam"  listener="#{reservaBean.actualizarTipo}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Tipo de camarote" />
+                        <p:outputLabel id="tipoCam" value="#{reservaBean.camarote.tipoCamarote.nombre}"/>
+                        <p:outputLabel for="tipoAlimentacion" value="Tipo Alimentacion" />
+                        <p:selectOneMenu id="tipoAlimentacion" value="#{reservaBean.alimentacion.codigo}">
+                            <f:selectItems value="#{reservaBean.tiposDeAlimentacion}" var="tipoAlimentacion" itemValue="#{tipoAlimentacion.codigo}" itemLabel="#{tipoAlimentacion.descripcion}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Fecha Emision" />
+                        <p:calendar id="fechaInicioCal" value="#{reservaBean.reserva.fechaEmision}" showOn="button" pattern="MM/dd/yyyy"/>
+                        <p:outputLabel value="Estado" />
+                        <p:selectOneMenu id="estado" value="#{reservaBean.reserva.estado}">
+                            <f:selectItem itemValue="PRE" itemLabel="PRE-RESERVA"/>
+                            <f:selectItem itemValue="RES" itemLabel="RESERVADO"/>
+                            <f:selectItem itemValue="ANU" itemLabel="ANULADO"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Valor" />
+                        <p:inputText id="valor" value="#{reservaBean.reserva.valorFinal}"  />
+                    </p:panelGrid>
+                    <p:commandButton value="Aceptar" actionListener="#{reservaBean.guardar}" update="@form" />
+                    <p:commandButton value="Cancelar" actionListener="#{reservaBean.cancelar}" update="@form" immediate="true"/>
+                </p:panel>
+
+            </p:panel>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -28,4 +28,13 @@ public class CamaroteService {
     public List<Camarote> buscarPorTipo(Integer codCruceroBusqueda, String codTipoCamaroteBusqueda ) {
         return this.camaroteFacade.findByCruceroTipo(codCruceroBusqueda,codTipoCamaroteBusqueda);
     }
+    
+    public List<Camarote> obtenerPorCrucero(Integer codCrucero) {
+        return this.camaroteFacade.findByCrucero(codCrucero);
+    }
+    
+    public Camarote obtenerInfoCamarote(Integer codCrucero, Integer numCamarote){
+        return this.camaroteFacade.findCodTipCamarote(codCrucero, numCamarote);
+    }
+    
 }
