@@ -28,11 +28,14 @@ import javax.persistence.TemporalType;
 @Table(name = "turista_reserva")
 public class TuristaReserva implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "COD_TURISTA_RESERVA", nullable = false)
     private Integer codigo;
 
+    @Id
+    @Column(name = "COD_RESERVA", nullable = false, length = 10)
+    private String codigoReserva;
+    
     @Column(name = "TIPO_IDENTIFICACION", nullable = false, length = 3)
     private String tipoIdentificacion;
 
@@ -50,8 +53,8 @@ public class TuristaReserva implements Serializable {
     private BigDecimal pesoMaleta;
 
     @ManyToOne
-    @JoinColumn(name = "COD_RESERVA", referencedColumnName = "COD_RESERVA")
-    private Reserva codReserva;
+    @JoinColumn(name = "COD_RESERVA", referencedColumnName = "COD_RESERVA", insertable = false, updatable = false)
+    private Reserva Reserva;
 
     public TuristaReserva() {
     }
@@ -108,13 +111,22 @@ public class TuristaReserva implements Serializable {
         this.pesoMaleta = pesoMaleta;
     }
 
-    public Reserva getCodReserva() {
-        return codReserva;
+    public String getCodigoReserva() {
+        return codigoReserva;
     }
 
-    public void setCodReserva(Reserva codReserva) {
-        this.codReserva = codReserva;
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
     }
+
+    public Reserva getReserva() {
+        return Reserva;
+    }
+
+    public void setReserva(Reserva Reserva) {
+        this.Reserva = Reserva;
+    }
+
 
     @Override
     public int hashCode() {
@@ -143,6 +155,7 @@ public class TuristaReserva implements Serializable {
 
     @Override
     public String toString() {
-        return "TuristaReserva{" + "codigo=" + codigo + ", tipoIdentificacion=" + tipoIdentificacion + ", identificacion=" + identificacion + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", pesoMaleta=" + pesoMaleta + ", codReserva=" + codReserva + '}';
+        return "TuristaReserva{" + "codigo=" + codigo + ", codigoReserva=" + codigoReserva + ", tipoIdentificacion=" + tipoIdentificacion + ", identificacion=" + identificacion + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", pesoMaleta=" + pesoMaleta + ", Reserva=" + Reserva + '}';
     }
+
 }
